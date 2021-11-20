@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouse_sens: 500
+  hp: 100
   regularFOV: 60
   zoomedFOV: 40
   mask:

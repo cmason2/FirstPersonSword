@@ -6,7 +6,18 @@ public class MouseLook : MonoBehaviour
 {
     public float mouse_sens = 100f;
     float x_rotation = 0f;
-    
+
+    [SerializeField] private int hp = 100;
+    public int HP
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
+
+    bool hasKey = false;
+    bool hasTorch = false;
+    bool hasSword = false;
+
     Camera cam;
     Camera sword_cam;
     [SerializeField] float regularFOV = 60;
@@ -17,9 +28,6 @@ public class MouseLook : MonoBehaviour
     UnityEngine.UI.Text infoText;
     UnityEngine.UI.Text interactText;
     GameObject obj;
-    bool hasKey = false;
-    bool hasTorch = false;
-    bool hasSword = false;
 
     void Start()
     {

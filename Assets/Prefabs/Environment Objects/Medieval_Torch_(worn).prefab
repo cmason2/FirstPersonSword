@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 6349387180462921135}
   - component: {fileID: 6793610250501679207}
   - component: {fileID: 8053281220861453536}
+  - component: {fileID: 384413150290530970}
   m_Layer: 0
   m_Name: GLTFNode_3
   m_TagString: Untagged
@@ -270,6 +271,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &384413150290530970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836745332245820227}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21654916, y: 0.15727608, z: 0.7487882}
+  m_Center: {x: -2.4611874, y: 1.823441, z: -1.622542}
 --- !u!1 &5285029773643014331
 GameObject:
   m_ObjectHideFlags: 0
