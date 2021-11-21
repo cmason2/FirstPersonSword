@@ -23,8 +23,7 @@ public class BossMovement : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<CharacterController>();
-        startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x, startPosition.y + 1.5f, endPosition.z);
+        
         StartCoroutine(VerticalOscillation());
         StartCoroutine(ShootSingle(true));
     }
@@ -44,6 +43,9 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator VerticalOscillation()
     {
+        startPosition = transform.position;
+        endPosition = new Vector3(startPosition.x, startPosition.y + 1.5f, endPosition.z);
+
         while (true)
         {
             while (Mathf.Abs(transform.position.y - endPosition.y) > stopError)
@@ -66,15 +68,9 @@ public class BossMovement : MonoBehaviour
         {
             //Instantiate, parent and position energy ball
             GameObject ball = Instantiate(energyBall, transform);
-            ball.transform.localScale = new Vector3(0f, 0f, 0f);
             ball.transform.localPosition = new Vector3(0f, 0.09f, 1.8f);
 
-            //Grow energy ball
-            while (ball.transform.localScale.x < 1f - 0.1)
-            {
-                ball.transform.localScale = Vector3.SmoothDamp(ball.transform.localScale, new Vector3(1.1f, 1.1f, 1.1f), ref scaleVelocity, 1f);
-                yield return null;
-            }
+            yield return new WaitForSeconds(2f);
 
             ball.transform.parent = null;
             if(homing)

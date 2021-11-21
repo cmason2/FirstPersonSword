@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public bool isFired = false;
     public bool isHoming = false;
     private bool isMoving = false;
+    private float timeActive = 0f;
     public Vector3 direction;
     CharacterController player;
     Rigidbody rb;
@@ -21,6 +22,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        timeActive += Time.deltaTime;
         if(isFired)
         {
             direction = player.GetComponentInChildren<Camera>().transform.position - rb.position;
@@ -28,6 +30,8 @@ public class Projectile : MonoBehaviour
             isFired = false;
             isMoving = true;
         }
+        if (timeActive > 10)
+            GetComponent<ParticleSystem>().Stop();
     }
 
     private void FixedUpdate()
@@ -51,8 +55,7 @@ public class Projectile : MonoBehaviour
         if (obj.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            Debug.Log("Player hit!");
-            obj.GetComponentInChildren<MouseLook>().HP -= 10;
+            obj.GetComponentInChildren<Player>().HP -= 10;
         }
         else if (obj.gameObject.tag == "Environment")
         {
