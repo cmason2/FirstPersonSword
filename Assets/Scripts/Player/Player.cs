@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -27,8 +28,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject sword;
     [SerializeField] GameObject torch; 
     public float interact_distance = 2.0f;
-    UnityEngine.UI.Text infoText;
-    UnityEngine.UI.Text interactText;
+    TextMeshProUGUI infoText;
+    TextMeshProUGUI interactText;
+    [SerializeField] float textDisplayTime = 3f;
+    [SerializeField] float textFadeTime = 1f;
+    GameObject informationTextObject;
     GameObject obj;
 
     [SerializeField] float attackDelay = 0.5f;
@@ -37,13 +41,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        //infoText = GameObject.Find("InformationText").GetComponent<UnityEngine.UI.Text>();
-        //interactText = GameObject.Find("InteractText").GetComponent<UnityEngine.UI.Text>();
+        informationTextObject = GameObject.Find("InformationText");
+        infoText = informationTextObject.GetComponent<TextMeshProUGUI>();
+        interactText = GameObject.Find("InteractionText").GetComponent<TextMeshProUGUI>();
         cam = gameObject.GetComponent<Camera>();
         sword_cam = gameObject.GetComponentsInChildren<Camera>()[1];
         //Check if player has already picked up items and equip
         if(hasSword)
             equipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+        if (hasTorch)
+            equipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
     }
 
     void Update()
@@ -73,15 +80,14 @@ public class Player : MonoBehaviour
         {
             obj = hitInfo.collider.gameObject;
             Debug.Log("In range of " + obj.name);
-            //interactText.text = obj.name + "\nPress 'E' to interact";
+            interactText.text = obj.name + "\nPress 'E' to interact";
             if (Input.GetKeyDown("e"))
             {
                 if (obj.tag == "Key")
                 {
                     Destroy(obj);
                     hasKey = true;
-                    Debug.Log("Key picked up");
-                    //infoText.text = "Key obtained";
+                    StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Key picked up", textDisplayTime, textFadeTime));
                 }
                 //else if (obj.tag == "Switch")
                 //{
@@ -94,29 +100,42 @@ public class Player : MonoBehaviour
                     Destroy(obj);
                     hasTorch = true;
                     equipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
-                    Debug.Log("Torch picked up, Press 'F' to toggle the torch on and off");
-                    //infoText.text = "Torch picked up\nPress 'F' to toggle the torch on and off";
+                    StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Torch equipped, Press 'F' to toggle the torch on and off", textDisplayTime, textFadeTime));
                 }
                 else if (obj.name == "Sword")
                 {
                     Destroy(obj);
                     hasSword = true;
                     equipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
-                    Debug.Log("Sword picked up\nPress Left mouse button to attack");
-                    //infoText.text = "Sword picked up\nPress Left mouse button to attack";
+                    StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Sword equipped\nPress Left mouse button to attack", textDisplayTime, textFadeTime));
                 }
-                //else if (obj.tag == "LockedDoor")
-                //{
-                //    if (hasKey)
-                //    {
-                //       obj.tag = "UnlockedDoor";
-                //        infoText.text = "You unlocked the door with the key";
-                //    }
-                //    else
-                //    {
-                //        infoText.text = "Door is locked";
-                //    }
-                //}
+                else if (obj.tag == "Door")
+                {
+                    Door door = obj.GetComponent<Door>();
+                    if (door.isLocked)
+                    {
+                        if (hasKey)
+                        {
+                            door.isLocked = false;
+                            StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("You unlocked the door with the key", textDisplayTime, textFadeTime));
+                        }
+                        else
+                        {
+                            StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Door is locked, find a key to unlock it", textDisplayTime, textFadeTime));
+                        }
+                    }
+                    else if (!door.isMoving)
+                    {
+                        if(door.isOpen)
+                        {
+                            StartCoroutine(door.RotateDoor(false, 1f));
+                        }
+                        else
+                        {
+                            StartCoroutine(door.RotateDoor(true, 1f));
+                        }
+                    }
+                }
                 //else if (obj.tag == "UnlockedDoor")
                 //{
                 //    if (obj.GetComponent<Door>().isOpen)
@@ -134,7 +153,7 @@ public class Player : MonoBehaviour
                 //} 
             }
             //Combat Stuff
-            else if (hasSword && timeSinceAttack >= attackDelay && Input.GetMouseButton(0) && obj.tag == "Enemy")
+            else if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay  && obj.tag == "Enemy")
             {
                 obj.GetComponent<Enemy>().HP -= 10;
                 timeSinceAttack = 0f;
@@ -142,7 +161,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            //interactText.text = "";
+            interactText.text = "";
         }
     }
     void Zoom()
