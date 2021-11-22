@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
     [SerializeField] float zoomedFOV = 40;
 
     [SerializeField] LayerMask mask;
-    [SerializeField] public GameObject sword;
+    [SerializeField] GameObject sword;
+    [SerializeField] GameObject torch; 
     public float interact_distance = 2.0f;
     UnityEngine.UI.Text infoText;
     UnityEngine.UI.Text interactText;
@@ -75,10 +76,11 @@ public class Player : MonoBehaviour
             //interactText.text = obj.name + "\nPress 'E' to interact";
             if (Input.GetKeyDown("e"))
             {
-                if (obj.name == "Key")
+                if (obj.tag == "Key")
                 {
                     Destroy(obj);
                     hasKey = true;
+                    Debug.Log("Key picked up");
                     //infoText.text = "Key obtained";
                 }
                 //else if (obj.tag == "Switch")
@@ -87,15 +89,14 @@ public class Player : MonoBehaviour
                 //    anim.SetBool("isOn", !anim.GetBool("isOn"));
                 //    infoText.text = "Switch is " + (anim.GetBool("isOn") ? "ON" : "OFF");
                 //}
-                //else if (obj.name == "Torch")
-                //{
-                //    obj.transform.SetParent(gameObject.transform);
-                //    obj.transform.localPosition = new Vector3(-0.36500001f, -0.324000001f, 0.493000001f);
-                //    obj.transform.localRotation = Quaternion.identity;
-                //    SetLayerRecursively(obj, 6);
-                //    hasTorch = true;
-                //    infoText.text = "Torch picked up\nPress 'F' to toggle the torch on and off";
-                //}
+                else if (obj.name == "Torch")
+                {
+                    Destroy(obj);
+                    hasTorch = true;
+                    equipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
+                    Debug.Log("Torch picked up, Press 'F' to toggle the torch on and off");
+                    //infoText.text = "Torch picked up\nPress 'F' to toggle the torch on and off";
+                }
                 else if (obj.name == "Sword")
                 {
                     Destroy(obj);
@@ -177,6 +178,6 @@ public class Player : MonoBehaviour
         GameObject equippedItem = Instantiate(prefab, transform);
         equippedItem.transform.localPosition = position;
         equippedItem.transform.localRotation = rotation;
-        equippedItem.layer = 6;
+        SetLayerRecursively(equippedItem, 6);
     }
 }

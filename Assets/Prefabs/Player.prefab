@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouse_sens: 500
   hp: 100
-  hasSword: 1
+  hasSword: 0
   regularFOV: 60
   zoomedFOV: 40
   mask:
