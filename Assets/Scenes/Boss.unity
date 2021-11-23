@@ -13980,6 +13980,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4565136102913923350, guid: 645ef35682e690c4087a5e69b0d551ee, type: 3}
+      propertyPath: torch
+      value: 
+      objectReference: {fileID: 6398649758560100055, guid: d2de44d37ab99354383b1a85a1016df9, type: 3}
+    - target: {fileID: 4565136102913923350, guid: 645ef35682e690c4087a5e69b0d551ee, type: 3}
+      propertyPath: hasSword
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565136103008738180, guid: 645ef35682e690c4087a5e69b0d551ee, type: 3}
       propertyPath: m_RootOrder
       value: 0
