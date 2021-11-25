@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
         set { hp = value; }
     }
 
+    public bool isInvulnerable = false;
+    [SerializeField] float invulnerabilityTime = 1.5f;
+    public float timeSinceDamageTaken = 0f;
+
     bool hasKey = false;
     bool hasTorch = false;
     [SerializeField] bool hasSword = false;
@@ -46,6 +50,7 @@ public class Player : MonoBehaviour
         interactText = GameObject.Find("InteractionText").GetComponent<TextMeshProUGUI>();
         cam = gameObject.GetComponent<Camera>();
         sword_cam = gameObject.GetComponentsInChildren<Camera>()[1];
+        timeSinceDamageTaken = invulnerabilityTime;
         //Check if player has already picked up items and equip
         if(hasSword)
             equipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
@@ -55,6 +60,18 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        timeSinceDamageTaken += Time.deltaTime;
+        if(timeSinceDamageTaken >= invulnerabilityTime)
+        {
+            //Can be attacked
+            isInvulnerable = false;
+        }
+        else
+        {
+            isInvulnerable = true;
+        }
+
+        CheckHealth();
         AdjustCamera();
         Zoom();
         CheckInteraction();
@@ -198,5 +215,13 @@ public class Player : MonoBehaviour
         equippedItem.transform.localPosition = position;
         equippedItem.transform.localRotation = rotation;
         SetLayerRecursively(equippedItem, 6);
+    }
+
+    void CheckHealth()
+    {
+        if(hp <= 0)
+        {
+            Debug.Log("Player is dead, what a shame!");
+        }
     }
 }

@@ -99,14 +99,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouse_sens: 500
   hp: 100
-  hasSword: 0
+  isInvulnerable: 0
+  invulnerabilityTime: 1.5
+  timeSinceDamageTaken: 0
+  hasSword: 1
   regularFOV: 60
   zoomedFOV: 40
   mask:
     serializedVersion: 2
     m_Bits: 128
   sword: {fileID: 9156198238812888958, guid: d2672d4d37c66dd419785334effe469e, type: 3}
+  torch: {fileID: 6398649758560100055, guid: d2de44d37ab99354383b1a85a1016df9, type: 3}
   interact_distance: 2
+  textDisplayTime: 3
+  textFadeTime: 1
   attackDelay: 0.5
 --- !u!1 &4565136102915124717
 GameObject:
@@ -263,7 +269,7 @@ GameObject:
   - component: {fileID: 4565136103323730777}
   m_Layer: 0
   m_Name: Player Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
