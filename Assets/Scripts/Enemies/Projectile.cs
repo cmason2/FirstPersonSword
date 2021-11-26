@@ -59,8 +59,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
             if(!playerScript.isInvulnerable)
             {
-                playerScript.HP -= 10;
-                playerScript.timeSinceDamageTaken = 0f;
+                playerScript.TakeDamage(10);
                 Debug.Log("Player taken damage from " + name);
             }
         }

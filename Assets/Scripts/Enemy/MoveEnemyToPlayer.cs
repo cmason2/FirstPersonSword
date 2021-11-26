@@ -16,6 +16,7 @@ public class MoveEnemyToPlayer : MonoBehaviour
     Player playerScript;
     NavMeshAgent navAgent;
     Animator anim;
+    LayerMask playerLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class MoveEnemyToPlayer : MonoBehaviour
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player");
         playerScript = target.GetComponentInChildren<Player>();
+        playerLayer = LayerMask.GetMask("Player");
         initialPosition = transform.position;
         oldRotation = transform.rotation.eulerAngles;
     }
@@ -88,12 +90,7 @@ public class MoveEnemyToPlayer : MonoBehaviour
             }
             Debug.Log(name + " is attacking");
             timeSinceAttack = 0f;
-            if(!playerScript.isInvulnerable)
-            {
-                playerScript.HP -= 10;
-                playerScript.timeSinceDamageTaken = 0f;
-                Debug.Log("Player taken damage from " + name);
-            }    
+            StartCoroutine(AttackCheck());  
         }
     }
 
@@ -103,5 +100,19 @@ public class MoveEnemyToPlayer : MonoBehaviour
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, closeRotationSpeed);
+    }
+
+    private IEnumerator AttackCheck()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //Debug.DrawRay(transform.position + new Vector3(0,1,0), transform.forward, Color.green, 100f, false);
+        if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out RaycastHit hitInfo, attackDistance, playerLayer))
+        {
+            if (!playerScript.isInvulnerable)
+            {
+                playerScript.TakeDamage(10);
+                Debug.Log("Player taken damage from " + name);
+            }
+        }
     }
 }
