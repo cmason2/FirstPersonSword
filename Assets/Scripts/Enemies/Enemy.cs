@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0)
         {
+            StartCoroutine(Death());
             anim.SetTrigger("triggerDead");
         }
     }
@@ -49,5 +50,10 @@ public class Enemy : MonoBehaviour
             rendererRef.material.EnableKeyword("_EMISSION");
             yield return new WaitForSeconds(0.5f);
             rendererRef.material.DisableKeyword("_EMISSION");
+    }
+
+    private IEnumerator Death()
+    {
+        yield return null;
     }
 }
