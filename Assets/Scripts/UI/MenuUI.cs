@@ -31,13 +31,11 @@ public class MenuUI : MonoBehaviour
 
     }
 
-
     public void startGame()
     {
         Debug.Log("Load the first scene");
         //SceneManager.LoadScene("")
     }
-
 
     public void quitGame()
     {
@@ -57,19 +55,16 @@ public class MenuUI : MonoBehaviour
         difficulty.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
         leaderboard.gameObject.SetActive(false);
-
     }
 
     public void leaderboardClick()
     {
         back.gameObject.SetActive(true);
 
-
         leaderboard.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
         difficulty.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
-
     }
 
 
@@ -93,9 +88,6 @@ public class MenuUI : MonoBehaviour
         easy.interactable = false;
         medium.interactable = true;
         hard.interactable = true;
-
-
-
     }
 
     public void mediumDifficulty()
@@ -112,7 +104,6 @@ public class MenuUI : MonoBehaviour
         easy.interactable = true;
         medium.interactable = true;
         hard.interactable = false;
-
     }
 
 }
