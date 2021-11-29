@@ -89,8 +89,17 @@ public class Player : MonoBehaviour
         }
 
         AdjustCamera();
-        CheckInteraction();
-        Attack();
+        
+        //Can't attack/interact when holding something
+        if(heldObject == null)
+        {
+            CheckInteraction();
+            Attack();
+        }
+        else
+        {
+            interactText.text = "Press 'F' to drop";
+        }
         Zoom();
         CheckTorchStatus();
         DropItem();
@@ -129,12 +138,6 @@ public class Player : MonoBehaviour
                     UpdateKeyUI();
                     StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Key picked up", textDisplayTime, textFadeTime));
                 }
-                //else if (obj.tag == "Switch")
-                //{
-                //    Animator anim = obj.GetComponent<Animator>();
-                //    anim.SetBool("isOn", !anim.GetBool("isOn"));
-                //    infoText.text = "Switch is " + (anim.GetBool("isOn") ? "ON" : "OFF");
-                //}
                 else if (targetedObject.name == "Torch")
                 {
                     Destroy(targetedObject);
