@@ -31,8 +31,8 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0)
         {
-            StartCoroutine(Death());
             anim.SetTrigger("triggerDead");
+            StartCoroutine(Death());
         }
     }
 
@@ -41,10 +41,10 @@ public class Enemy : MonoBehaviour
         hp -= damage;
         CheckHealth();
         anim.SetTrigger("triggerDamaged");
-        StartCoroutine(ApplyDamageTexture());
+        StartCoroutine(ApplyDamageEffect());
     }
 
-    private IEnumerator ApplyDamageTexture()
+    private IEnumerator ApplyDamageEffect()
     {
         rendererRef.material.SetColor("_EmissionColor", new Color(0.3f, 0f, 0f));
             rendererRef.material.EnableKeyword("_EMISSION");
@@ -54,6 +54,18 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Death()
     {
-        yield return null;
+        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(GetComponent<MoveEnemyToPlayer>());
+        yield return new WaitForSeconds(1f);
+        Destroy(GetComponent<BoxCollider>());
+        SphereCollider collider = gameObject.AddComponent<SphereCollider>();
+        collider.radius = 0.3f;
+        collider.center = new Vector3(0f, 0.25f, 0f);
+        //BoxCollider collider = GetComponent<BoxCollider>();
+        //collider.size = new Vector3(collider.size.x,0.5f,collider.size.z);
+        //collider.center = new Vector3(collider.center.x, 0.25f, collider.center.z);
+        gameObject.name = "Dead Spider";
+        gameObject.layer = 7;
+
     }
 }

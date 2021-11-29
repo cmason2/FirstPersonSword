@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     [SerializeField] float regularFOV = 60;
     [SerializeField] float zoomedFOV = 40;
 
+    GameObject heldObject = null;
+
     //Object interaction
     [SerializeField] LayerMask interactLayer;
     public float interactDistance = 2.0f;
@@ -68,9 +70,9 @@ public class Player : MonoBehaviour
         timeSinceDamageTaken = invulnerabilityTime;
         //Check if player has already picked up items and equip
         if(hasSword)
-            equipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+            EquipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
         if (hasTorch)
-            equipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
+            EquipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
     }
 
     private void Update()
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
         Attack();
         Zoom();
         CheckTorchStatus();
+        DropItem();
     }
 
     private void FixedUpdate()
@@ -136,14 +139,14 @@ public class Player : MonoBehaviour
                 {
                     Destroy(targetedObject);
                     hasTorch = true;
-                    equipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
+                    EquipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
                     StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Torch equipped, Press 'F' to toggle the torch on and off", textDisplayTime, textFadeTime));
                 }
                 else if (targetedObject.name == "Sword")
                 {
                     Destroy(targetedObject);
                     hasSword = true;
-                    equipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+                    EquipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
                     StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Sword equipped\nPress Left mouse button to attack", textDisplayTime, textFadeTime));
                 }
                 else if (targetedObject.tag == "Door")
@@ -174,6 +177,11 @@ public class Player : MonoBehaviour
                             StartCoroutine(door.RotateDoor(true, 1f));
                         }
                     }
+                }
+                else if (targetedObject.name == "Dead Spider")
+                {
+                    HoldItem(targetedObject);
+                    heldObject = targetedObject;
                 }
             }            
         }
@@ -225,12 +233,32 @@ public class Player : MonoBehaviour
         }
     }
 
-    void equipItem(GameObject prefab, Vector3 position, Quaternion rotation)
+    void EquipItem(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         GameObject equippedItem = Instantiate(prefab, transform);
         equippedItem.transform.localPosition = position;
         equippedItem.transform.localRotation = rotation;
         SetLayerRecursively(equippedItem, 6);
+    }
+
+    void HoldItem(GameObject item)
+    {
+        if (item.GetComponent<Rigidbody>())
+            Destroy(item.GetComponent<Rigidbody>());
+        item.transform.SetParent(transform);
+        item.transform.localPosition = new Vector3(0f, -0f, 2f);
+        SetLayerRecursively(item, 6);
+    }
+
+    void DropItem()
+    {
+        if (heldObject != null && Input.GetKeyDown("f"))
+        {
+            heldObject.transform.SetParent(null);
+            heldObject.AddComponent<Rigidbody>().angularDrag = 3f;
+            SetLayerRecursively(heldObject, 7);
+            heldObject = null;
+        }
     }
 
     void CheckHealth()

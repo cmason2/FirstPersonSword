@@ -80,14 +80,15 @@ public class MoveEnemyToPlayer : MonoBehaviour
         timeSinceAttack += Time.deltaTime;
         if (DistanceToPlayer() < attackDistance && timeSinceAttack > attackDelay)
         {
-            if(Random.value > 0.5)
-            {
-                anim.SetTrigger("triggerAttack1");
-            }
-            else
-            {
-                anim.SetTrigger("triggerAttack2");
-            }
+            //if(Random.value > 0.5)
+            //{
+            //    anim.SetTrigger("triggerAttack1");
+            //}
+            //else
+            //{
+            //    anim.SetTrigger("triggerAttack2");
+            //}
+            anim.SetTrigger("triggerAttack1");
             Debug.Log(name + " is attacking");
             timeSinceAttack = 0f;
             StartCoroutine(AttackCheck());  
