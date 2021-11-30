@@ -16,7 +16,7 @@ public class MenuUI : MonoBehaviour
     public Button leaderboard;
 
 
-    public void Start()
+    void Start()
     {
 
         easy.gameObject.SetActive(false);
