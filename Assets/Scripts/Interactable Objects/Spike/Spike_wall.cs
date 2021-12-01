@@ -5,20 +5,21 @@ using UnityEngine;
 public class Spike_wall : MonoBehaviour
 {
 
-    Animator animators;
+    Animator [] animators;
 
     // Start is called before the first frame update
     void Start()
     {
-        animators = GetComponentInChildren<Animator>();
+        animators = GetComponentsInChildren<Animator>();
 
     }
 
     private void OnTriggerEnter(Collider collider)
     {
+        foreach (Animator animators in animators) { 
 
-        animators.SetTrigger("activatewall");
-
+        animators.SetTrigger("activate");
+    }
 
 
         
