@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spike_switch : MonoBehaviour
 {
-    Animator [] animators;
+    Animator[] animators;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +17,11 @@ public class Spike_switch : MonoBehaviour
     {
         foreach (Animator animators in animators)
         {
-            animators.SetTrigger("blockexit");
 
+            animators.SetTrigger("blockexit");
         }
+
+
 
     }
 }
