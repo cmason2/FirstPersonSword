@@ -247,7 +247,8 @@ public class Player : MonoBehaviour
     void HoldItem(GameObject item)
     {
         if (item.GetComponent<Rigidbody>())
-            Destroy(item.GetComponent<Rigidbody>());
+            //Destroy(item.GetComponent<Rigidbody>());
+            item.GetComponent<Rigidbody>().isKinematic = true;
         item.transform.SetParent(transform);
         item.transform.localPosition = new Vector3(0f, -0f, 2f);
         SetLayerRecursively(item, 6);
@@ -258,7 +259,7 @@ public class Player : MonoBehaviour
         if (heldObject != null && Input.GetKeyDown("f"))
         {
             heldObject.transform.SetParent(null);
-            heldObject.AddComponent<Rigidbody>().angularDrag = 3f;
+            heldObject.GetComponent<Rigidbody>().isKinematic = false;
             SetLayerRecursively(heldObject, 7);
             heldObject = null;
         }
