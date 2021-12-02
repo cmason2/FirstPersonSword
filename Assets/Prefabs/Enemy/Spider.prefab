@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 7675741809653574287}
   - component: {fileID: 6329779108658789246}
   - component: {fileID: 1753248763}
-  - component: {fileID: -3349389677628505935}
+  - component: {fileID: 955077943}
   m_Layer: 8
   m_Name: Spider
   m_TagString: Untagged
@@ -1479,7 +1479,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.48, z: 0}
---- !u!114 &-3349389677628505935
+--- !u!114 &955077943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7369260441889299005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c24ddba85545484d9030c744a193a11, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c985d29ca2765c4fa178f15f0df455e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 30
