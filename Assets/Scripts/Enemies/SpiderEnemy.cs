@@ -53,10 +53,8 @@ public class SpiderEnemy : Enemy
         SphereCollider collider = gameObject.AddComponent<SphereCollider>();
         collider.radius = 0.3f;
         collider.center = new Vector3(0f, 0.25f, 0f);
-        gameObject.AddComponent<Rigidbody>().angularDrag = 3f;
-        //BoxCollider collider = GetComponent<BoxCollider>();
-        //collider.size = new Vector3(collider.size.x,0.5f,collider.size.z);
-        //collider.center = new Vector3(collider.center.x, 0.25f, collider.center.z);
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.angularDrag = 3f;
         gameObject.name = "Dead Spider";
         gameObject.layer = 7;
 
