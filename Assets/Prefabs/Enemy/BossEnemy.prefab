@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3094152041725374577}
   - component: {fileID: 3094152041725374578}
-  - component: {fileID: 3094152041725374543}
   - component: {fileID: 3094152041725374576}
+  - component: {fileID: 1291620064}
   m_Layer: 8
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094152041725374579}
-  m_LocalRotation: {x: 0.18506914, y: -0, z: -0, w: 0.98272556}
+  m_LocalRotation: {x: 0.18506633, y: 0, z: 0, w: 0.98272604}
   m_LocalPosition: {x: 0, y: 4.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -51,19 +51,6 @@ MonoBehaviour:
   stopError: 0.1
   smoothTime: 1
   reloadTime: 3
---- !u!114 &3094152041725374543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3094152041725374579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c24ddba85545484d9030c744a193a11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
 --- !u!136 &3094152041725374576
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -78,6 +65,19 @@ CapsuleCollider:
   m_Height: 4.23
   m_Direction: 1
   m_Center: {x: 0, y: 0.52, z: 0.67}
+--- !u!114 &1291620064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094152041725374579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c34fdc2c48a0b4cb1486e3f9f2331a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
 --- !u!1001 &3094152039976605994
 PrefabInstance:
   m_ObjectHideFlags: 0

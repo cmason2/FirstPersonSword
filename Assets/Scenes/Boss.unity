@@ -5472,24 +5472,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7252865437038792029, guid: 9b329297478419c4393451c2bbbb2946, type: 3}
   m_PrefabInstance: {fileID: 129351029}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1291620060 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3094152041725374579, guid: 95aa95ebc5d95c04f98ca98f3f033ab0, type: 3}
-  m_PrefabInstance: {fileID: 3094152040866889391}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1291620064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291620060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c34fdc2c48a0b4cb1486e3f9f2331a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
 --- !u!850595691 &1339718984
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -14419,12 +14401,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3094152041725374579, guid: 95aa95ebc5d95c04f98ca98f3f033ab0, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3094152041725374543, guid: 95aa95ebc5d95c04f98ca98f3f033ab0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95aa95ebc5d95c04f98ca98f3f033ab0, type: 3}
 --- !u!1001 &4565136103767923831
 PrefabInstance:

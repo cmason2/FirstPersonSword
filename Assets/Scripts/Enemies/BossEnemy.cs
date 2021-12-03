@@ -26,13 +26,17 @@ public class BossEnemy : Enemy
     {
         foreach (Renderer renderer in renderersRef)
         {
-            renderer.material.SetColor("_EmissionColor", new Color(0.3f, 0f, 0f));
-            renderer.material.EnableKeyword("_EMISSION");
+            if(renderer != null)
+            {
+                renderer.material.SetColor("_EmissionColor", new Color(0.3f, 0f, 0f));
+                renderer.material.EnableKeyword("_EMISSION");
+            }
         }
         yield return new WaitForSeconds(0.5f);
         foreach (Renderer renderer in renderersRef)
         {
-            renderer.material.DisableKeyword("_EMISSION");
+            if(renderer != null)
+                renderer.material.DisableKeyword("_EMISSION");
         }
     }
 }
