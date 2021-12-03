@@ -47,7 +47,7 @@ public class SpiderEnemy : Enemy
     {
         anim.SetTrigger("triggerDead");
         Destroy(GetComponent<NavMeshAgent>());
-        Destroy(GetComponent<MoveEnemyToPlayer>());
+        Destroy(GetComponent<SpiderMovement>());
         yield return new WaitForSeconds(1f);
         Destroy(GetComponent<BoxCollider>());
         SphereCollider collider = gameObject.AddComponent<SphereCollider>();

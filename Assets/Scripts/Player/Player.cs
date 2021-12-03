@@ -199,6 +199,7 @@ public class Player : MonoBehaviour
         timeSinceAttack += Time.deltaTime;
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
         {
+            Debug.Log("Looking at " + hitInfo.collider.gameObject.name);
             targetedEnemy = hitInfo.collider.gameObject;
             if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay)
             {
