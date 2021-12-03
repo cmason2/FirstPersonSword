@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class BossMovement : MonoBehaviour
     CharacterController player;
 
     public GameObject energyBall;
+    public GameObject spiderPrefab;
 
     [SerializeField] float rotationSpeed = 0.01f;
     [SerializeField] float stopError = 0.1f;
@@ -23,9 +25,8 @@ public class BossMovement : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<CharacterController>();
-        
-        StartCoroutine(VerticalOscillation());
-        StartCoroutine(ShootSingle(true));
+       
+        StartCoroutine(Phase1());
     }
 
     // Update is called once per frame
@@ -64,8 +65,10 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator ShootSingle(bool homing)
     {
+        StartCoroutine(VerticalOscillation());
         while (true)
         {
+            Debug.Log("Started shooting");
             //Instantiate, parent and position energy ball
             GameObject ball = Instantiate(energyBall, transform);
             ball.transform.localPosition = new Vector3(0f, 0.09f, 1.8f);
@@ -82,5 +85,63 @@ public class BossMovement : MonoBehaviour
 
             yield return new WaitForSeconds(reloadTime);
         }
+    }
+
+    IEnumerator SpawnEnemies()
+    {
+        Debug.Log("Started enemy spawning");
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = startPosition + new Vector3(transform.position.x, -4.5f, transform.position.z);
+        //Move boss down to ground level
+        for (var t = 0f; t < 1; t += Time.deltaTime / 3f)
+        {
+            transform.position = Vector3.Lerp(startPosition, endPosition, t);
+            yield return null;
+        }
+
+        //Spawn spider enemies
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject spider = Instantiate(spiderPrefab, transform);
+            spider.transform.localPosition = new Vector3(0f, 0f, 1.8f);
+            spider.transform.localScale = Vector3.zero;
+            NavMeshAgent spiderAgent = spider.GetComponent<NavMeshAgent>();
+            SpiderMovement spiderMovement = spider.GetComponent<SpiderMovement>();
+            spiderMovement.enabled = false;
+            spiderAgent.enabled = false;
+            for (var t = 0f; t < 1; t += Time.deltaTime / 2f)
+            {
+                spider.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
+                yield return null;
+            }
+
+            spider.transform.parent = null;
+            Rigidbody rb = spider.AddComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 30f);
+            yield return new WaitForSeconds(1f);
+            Destroy(rb);
+            spiderAgent.enabled = true;
+            spiderMovement.enabled = true;
+            yield return new WaitForSeconds(2f);
+        }
+
+        //Move boss upwards to normal height
+        for (var t = 0f; t < 1; t += Time.deltaTime / 3f)
+        {
+            transform.position = Vector3.Lerp(endPosition, startPosition, t);
+            yield return null;
+        }
+        Debug.Log("Finished spawning enemies");
+    }
+
+    IEnumerator Phase1()
+    {
+        StartCoroutine(ShootSingle(true));
+        yield return new WaitForSeconds(5f);
+        StopAllCoroutines();
+        Debug.Log("Started spawning enemies");
+        yield return StartCoroutine(SpawnEnemies());
+        Debug.Log("Stopped spawning enemies");
+        StartCoroutine(ShootSingle(true));
     }
 }
