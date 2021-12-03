@@ -131,6 +131,15 @@ public class Player : MonoBehaviour
             interactText.text = targetedObject.name + "\nPress 'E' to interact";
             if (Input.GetKeyDown("e"))
             {
+                if(targetedObject.tag == "chest")
+                {
+                    targetedObject.GetComponent<Animator>().SetTrigger("activate");
+                    
+                }
+                if (targetedObject.tag == "cupbord")
+                {
+                    targetedObject.GetComponent<Animator>().SetTrigger("opendoor");
+                }
                 if (targetedObject.tag == "Key")
                 {
                     Destroy(targetedObject);
