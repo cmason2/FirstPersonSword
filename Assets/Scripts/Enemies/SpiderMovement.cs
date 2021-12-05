@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveEnemyToPlayer : MonoBehaviour
+public class SpiderMovement : MonoBehaviour
 {
     [SerializeField] float chaseDistance = 10f;
     [SerializeField] float closeRotationSpeed = 0.05f;

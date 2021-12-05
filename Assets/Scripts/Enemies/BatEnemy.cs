@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossEnemy : Enemy
+public class BatEnemy : Enemy
 {
     Renderer[] renderersRef;
 
