@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
@@ -14,22 +11,6 @@ public class MenuUI : MonoBehaviour
     public Button hard;
     public Button back;
     public Button leaderboard;
-
-
-    void Start()
-    {
-
-        easy.gameObject.SetActive(false);
-        medium.gameObject.SetActive(false);
-        hard.gameObject.SetActive(false);
-        back.gameObject.SetActive(false);
-
-        start.gameObject.SetActive(true);
-        difficulty.gameObject.SetActive(true);
-        quit.gameObject.SetActive(true);
-        leaderboard.gameObject.SetActive(true);
-
-    }
 
     public void startGame()
     {
@@ -43,18 +24,18 @@ public class MenuUI : MonoBehaviour
         Debug.Log("Quit Game");
     }
 
-
     public void clickDifficulty()
     {
-        easy.gameObject.SetActive(true);
-        medium.gameObject.SetActive(true);
-        hard.gameObject.SetActive(true);
-        back.gameObject.SetActive(true);
-
         start.gameObject.SetActive(false);
         difficulty.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
         leaderboard.gameObject.SetActive(false);
+
+
+        easy.gameObject.SetActive(true);
+        medium.gameObject.SetActive(true);
+        hard.gameObject.SetActive(true);
+        back.gameObject.SetActive(true);
     }
 
     public void leaderboardClick()
@@ -66,7 +47,6 @@ public class MenuUI : MonoBehaviour
         difficulty.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
     }
-
 
     public void backButton()
     {
@@ -105,5 +85,4 @@ public class MenuUI : MonoBehaviour
         medium.interactable = true;
         hard.interactable = false;
     }
-
 }
