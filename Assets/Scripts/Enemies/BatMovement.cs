@@ -80,7 +80,6 @@ public class BatMovement : MonoBehaviour
     private void FaceTarget(Vector3 destination) //https://stackoverflow.com/questions/35861951/unity-navmeshagent-wont-face-the-target-object-when-reaches-stopping-distance
     {
         Vector3 lookPos = destination - transform.position;
-        lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, closeRotationSpeed);
     }
@@ -111,6 +110,7 @@ public class BatMovement : MonoBehaviour
         for (var t = 0f; t < 1; t += Time.deltaTime / 1f)
         {
             transform.position = Vector3.Lerp(targetPosition, attackStartPosition, t);
+            FaceTarget(target.transform.position);
             yield return null;
         }
         navAgent.enabled = true;
