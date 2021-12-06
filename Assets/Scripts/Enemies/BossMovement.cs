@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class BossMovement : MonoBehaviour
 {
-
+    BossEnemy boss;
+    
     CharacterController player;
 
     public GameObject energyBall;
@@ -21,9 +22,12 @@ public class BossMovement : MonoBehaviour
     Vector3 verticalVelocity = Vector3.zero;
     Vector3 scaleVelocity = Vector3.zero;
 
+    bool wave2 = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        boss = GetComponent<BossEnemy>();
         player = FindObjectOfType<CharacterController>();
        
         StartCoroutine(Phase1());
@@ -33,6 +37,10 @@ public class BossMovement : MonoBehaviour
     void Update()
     {
         FaceTarget(player.transform.position);
+        if(boss.HP < 50)
+        {
+            wave2 = true;
+        }
     }
 
     private void FaceTarget(Vector3 destination) //https://stackoverflow.com/questions/35861951/unity-navmeshagent-wont-face-the-target-object-when-reaches-stopping-distance
@@ -65,7 +73,6 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator ShootSingle(bool homing)
     {
-        StartCoroutine(VerticalOscillation());
         while (true)
         {
             Debug.Log("Started shooting");
@@ -131,17 +138,25 @@ public class BossMovement : MonoBehaviour
             transform.position = Vector3.Lerp(endPosition, startPosition, t);
             yield return null;
         }
-        Debug.Log("Finished spawning enemies");
     }
 
     IEnumerator Phase1()
     {
-        StartCoroutine(ShootSingle(true));
-        yield return new WaitForSeconds(5f);
-        StopAllCoroutines();
-        Debug.Log("Started spawning enemies");
-        yield return StartCoroutine(SpawnEnemies());
-        Debug.Log("Stopped spawning enemies");
-        StartCoroutine(ShootSingle(true));
+        IEnumerator coroutine;
+        coroutine = ShootSingle(true);
+        while(boss.HP > 50)
+        {
+            StartCoroutine(coroutine);
+            yield return new WaitForSeconds(15f);
+            StopCoroutine(coroutine);
+            yield return StartCoroutine(SpawnEnemies());
+        }
+        StartCoroutine(Phase2());
+    }
+
+    IEnumerator Phase2()
+    {
+        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        yield return new WaitForSeconds(20f);
     }
 }
