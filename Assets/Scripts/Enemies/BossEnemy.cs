@@ -17,6 +17,7 @@ public class BossEnemy : Enemy
     {
         Debug.Log(gameObject.name + " took " + damage + " damage!");
         hp -= damage;
+        BossHealthBar.currentHealth = hp;//new
         CheckHealth();
         StartCoroutine(ApplyDamageEffect());
     }
