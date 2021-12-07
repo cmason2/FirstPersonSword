@@ -10,6 +10,7 @@ public class BossMovement : MonoBehaviour
     CharacterController player;
 
     public GameObject energyBall;
+    public GameObject deflectBall;
     public GameObject spiderPrefab;
 
     [SerializeField] float rotationSpeed = 0.01f;
@@ -23,6 +24,7 @@ public class BossMovement : MonoBehaviour
     Vector3 scaleVelocity = Vector3.zero;
 
     int wave2HP = 50;
+    public bool deflectBallActive = false;
     bool wave2 = false;
 
     // Start is called before the first frame update
@@ -30,15 +32,16 @@ public class BossMovement : MonoBehaviour
     {
         boss = GetComponent<BossEnemy>();
         player = FindObjectOfType<CharacterController>();
-       
-        StartCoroutine(Phase1());
+
+        //StartCoroutine(Phase1());
+        StartCoroutine(Phase2());
     }
 
     // Update is called once per frame
     void Update()
     {
         FaceTarget(player.transform.position);
-        if(boss.HP < 50)
+        if (boss.HP < 50)
         {
             wave2 = true;
         }
@@ -92,6 +95,30 @@ public class BossMovement : MonoBehaviour
             ball.GetComponent<Projectile>().isFired = true;
 
             yield return new WaitForSeconds(reloadTime);
+        }
+    }
+
+    IEnumerator ShootDeflect()
+    {
+        while (true)
+        {
+            Debug.Log("Started shooting");
+            //Instantiate, parent and position energy ball
+            GameObject ball = Instantiate(deflectBall, transform);
+            deflectBallActive = true;
+            ball.transform.localPosition = new Vector3(0f, 0.09f, 1.8f);
+
+            yield return new WaitForSeconds(2f);
+
+            ball.transform.parent = null;
+
+            ball.GetComponent<DeflectProjectile>().isFired = true;
+
+            while (deflectBallActive)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -179,7 +206,8 @@ public class BossMovement : MonoBehaviour
     {
         //Return enemy to top
 
-        boss.SetInvulnerability(true);
+        //boss.SetInvulnerability(true);
+        StartCoroutine(ShootDeflect());
         yield return null;
     }
 }

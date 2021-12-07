@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] float attackDelay = 0.5f;
     float timeSinceAttack = 0f;
     float attackDistance = 1f;
-    Enemy targetedEnemy;
+    GameObject targetedEnemy;
+    Enemy targetedEnemyScript;
 
     //Inventory
     [SerializeField] bool hasSword = false;
@@ -208,11 +209,16 @@ public class Player : MonoBehaviour
         timeSinceAttack += Time.deltaTime;
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
         {
-            targetedEnemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-            if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay && !targetedEnemy.isInvulnerable)
+            targetedEnemy = hitInfo.collider.gameObject;
+            targetedEnemyScript = targetedEnemy.GetComponent<Enemy>();
+            if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay && !targetedEnemyScript.isInvulnerable)
             {
-                targetedEnemy.TakeDamage(10);
+                targetedEnemyScript.TakeDamage(10);
                 timeSinceAttack = 0f;
+                if(targetedEnemy.tag == "DeflectBall")
+                {
+                    targetedEnemy.GetComponent<DeflectProjectile>().direction = transform.forward; //Deflect where the player is looking.
+                }
             }
         }
     }
@@ -249,6 +255,10 @@ public class Player : MonoBehaviour
         GameObject equippedItem = Instantiate(prefab, transform);
         equippedItem.transform.localPosition = position;
         equippedItem.transform.localRotation = rotation;
+        if(equippedItem.GetComponent<BoxCollider>() != null)
+        {
+            Destroy(equippedItem.GetComponent<BoxCollider>()); //Remove colliders from objects once equipped
+        }
         SetLayerRecursively(equippedItem, 6);
     }
 
