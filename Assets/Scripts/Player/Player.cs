@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     [SerializeField] float attackDelay = 0.5f;
     float timeSinceAttack = 0f;
     float attackDistance = 1f;
-    GameObject targetedEnemy;
+    Enemy targetedEnemy;
 
     //Inventory
     [SerializeField] bool hasSword = false;
@@ -208,10 +208,10 @@ public class Player : MonoBehaviour
         timeSinceAttack += Time.deltaTime;
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
         {
-            targetedEnemy = hitInfo.collider.gameObject;
-            if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay)
+            targetedEnemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
+            if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay && !targetedEnemy.isInvulnerable)
             {
-                targetedEnemy.GetComponent<Enemy>().TakeDamage(10);
+                targetedEnemy.TakeDamage(10);
                 timeSinceAttack = 0f;
             }
         }
@@ -255,8 +255,7 @@ public class Player : MonoBehaviour
     void HoldItem(GameObject item)
     {
         if (item.GetComponent<Rigidbody>())
-            //Destroy(item.GetComponent<Rigidbody>());
-            item.GetComponent<Rigidbody>().isKinematic = true;
+            item.GetComponent<Rigidbody>().isKinematic = true; //Prevent forces and collisions
         item.transform.SetParent(transform);
         item.transform.localPosition = new Vector3(0f, -0f, 2f);
         SetLayerRecursively(item, 6);

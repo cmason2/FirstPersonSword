@@ -22,6 +22,7 @@ public class BossMovement : MonoBehaviour
     Vector3 verticalVelocity = Vector3.zero;
     Vector3 scaleVelocity = Vector3.zero;
 
+    int wave2HP = 50;
     bool wave2 = false;
 
     // Start is called before the first frame update
@@ -96,17 +97,12 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        Debug.Log("Started enemy spawning");
+        //Move boss down to ground level
         Vector3 startPosition = transform.position;
         Vector3 endPosition = startPosition + new Vector3(transform.position.x, -4.5f, transform.position.z);
-        //Move boss down to ground level
-        for (var t = 0f; t < 1; t += Time.deltaTime / 3f)
-        {
-            transform.position = Vector3.Lerp(startPosition, endPosition, t);
-            yield return null;
-        }
+        yield return StartCoroutine(MoveOverTime(startPosition, endPosition, 3f));
 
-        //Spawn spider enemies
+        //Spawn spider enemies, i = number of enemies spawned during each spawning phase
         for (int i = 0; i < 2; i++)
         {
             GameObject spider = Instantiate(spiderPrefab, transform);
@@ -116,26 +112,51 @@ public class BossMovement : MonoBehaviour
             SpiderMovement spiderMovement = spider.GetComponent<SpiderMovement>();
             spiderMovement.enabled = false;
             spiderAgent.enabled = false;
+            
+            //Grow Spider
             for (var t = 0f; t < 1; t += Time.deltaTime / 2f)
             {
+                if(boss.HP <= wave2HP)
+                {
+                    Destroy(spider);
+                    yield break;
+                }
                 spider.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
                 yield return null;
             }
 
+            //Drop Spider
             spider.transform.parent = null;
             Rigidbody rb = spider.AddComponent<Rigidbody>();
             rb.AddForce(transform.forward * 30f);
-            yield return new WaitForSeconds(1f);
+            yield return StartCoroutine(HPInterruptedWait(wave2HP, 1f)); //Delay before spider becomes active
             Destroy(rb);
             spiderAgent.enabled = true;
             spiderMovement.enabled = true;
-            yield return new WaitForSeconds(2f);
+            yield return StartCoroutine(HPInterruptedWait(wave2HP, 5f)); //Delay before spawning next spider
         }
 
         //Move boss upwards to normal height
-        for (var t = 0f; t < 1; t += Time.deltaTime / 3f)
+        yield return StartCoroutine(MoveOverTime(transform.position, startPosition, 3f));
+    }
+
+    IEnumerator HPInterruptedWait(int healthLimit, float timeToWait)
+    {
+        for (float time = timeToWait;  timeToWait >= 0; timeToWait -= Time.deltaTime)
         {
-            transform.position = Vector3.Lerp(endPosition, startPosition, t);
+            if(boss.HP <= healthLimit)
+            {
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator MoveOverTime(Vector3 start, Vector3 end, float time)
+    {
+        for (var t = 0f; t < 1; t += Time.deltaTime / time)
+        {
+            transform.position = Vector3.Lerp(start, end, t);
             yield return null;
         }
     }
@@ -147,7 +168,7 @@ public class BossMovement : MonoBehaviour
         while(boss.HP > 50)
         {
             StartCoroutine(coroutine);
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(5f);
             StopCoroutine(coroutine);
             yield return StartCoroutine(SpawnEnemies());
         }
@@ -156,7 +177,9 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator Phase2()
     {
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        yield return new WaitForSeconds(20f);
+        //Return enemy to top
+
+        boss.SetInvulnerability(true);
+        yield return null;
     }
 }
