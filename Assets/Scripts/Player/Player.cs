@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public bool isInvulnerable = false;
     [SerializeField] float invulnerabilityTime = 1.5f;
     public float timeSinceDamageTaken = 0f;
-    [SerializeField] float attackDelay = 1f;
+    [SerializeField] float attackDelay = 0.75f;
     float timeSinceAttack = 0f;
     float attackDistance = 1f;
     GameObject targetedEnemy;

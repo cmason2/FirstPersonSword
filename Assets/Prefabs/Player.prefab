@@ -105,7 +105,7 @@ MonoBehaviour:
   isInvulnerable: 0
   invulnerabilityTime: 1.5
   timeSinceDamageTaken: 0
-  attackDelay: 0.5
+  attackDelay: 0.75
   hasSword: 1
   keysUI:
   - {fileID: 0}
