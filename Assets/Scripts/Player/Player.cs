@@ -23,11 +23,12 @@ public class Player : MonoBehaviour
     public bool isInvulnerable = false;
     [SerializeField] float invulnerabilityTime = 1.5f;
     public float timeSinceDamageTaken = 0f;
-    [SerializeField] float attackDelay = 0.5f;
+    [SerializeField] float attackDelay = 1f;
     float timeSinceAttack = 0f;
     float attackDistance = 1f;
     GameObject targetedEnemy;
     Enemy targetedEnemyScript;
+    Animator swordAnimator;
 
     //Inventory
     [SerializeField] bool hasSword = false;
@@ -69,9 +70,13 @@ public class Player : MonoBehaviour
         enemyLayer = LayerMask.GetMask("Enemy");
         interactLayer = LayerMask.GetMask("Interactable Objects");
         timeSinceDamageTaken = invulnerabilityTime;
+        timeSinceAttack = attackDelay;
         //Check if player has already picked up items and equip
-        if(hasSword)
+        if (hasSword)
+        {
             EquipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+            swordAnimator = GetComponentInChildren<Animator>();
+        }
         if (hasTorch)
             EquipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
     }
@@ -160,6 +165,7 @@ public class Player : MonoBehaviour
                     Destroy(targetedObject);
                     hasSword = true;
                     EquipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+                    swordAnimator = GetComponentInChildren<Animator>();
                     StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Sword equipped\nPress Left mouse button to attack", textDisplayTime, textFadeTime));
                 }
                 else if (targetedObject.tag == "Door")
@@ -207,20 +213,25 @@ public class Player : MonoBehaviour
     void Attack()
     {
         timeSinceAttack += Time.deltaTime;
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
+        if(Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay)
         {
-            targetedEnemy = hitInfo.collider.gameObject;
-            targetedEnemyScript = targetedEnemy.GetComponent<Enemy>();
-            if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay && !targetedEnemyScript.isInvulnerable)
+            swordAnimator.SetTrigger("click");
+            timeSinceAttack = 0f;
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
             {
-                targetedEnemyScript.TakeDamage(10);
-                timeSinceAttack = 0f;
-                if(targetedEnemy.tag == "DeflectBall")
+                targetedEnemy = hitInfo.collider.gameObject;
+                targetedEnemyScript = targetedEnemy.GetComponent<Enemy>();
+                if (!targetedEnemyScript.isInvulnerable)
                 {
-                    targetedEnemy.GetComponent<DeflectProjectile>().direction = transform.forward; //Deflect where the player is looking.
+                    targetedEnemyScript.TakeDamage(10);
+                    if (targetedEnemy.tag == "DeflectBall")
+                    {
+                        targetedEnemy.GetComponent<DeflectProjectile>().direction = transform.forward; //Deflect where the player is looking.
+                    }
                 }
             }
         }
+        
     }
     void Zoom()
     {

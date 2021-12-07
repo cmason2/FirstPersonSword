@@ -207,6 +207,7 @@ public class BossMovement : MonoBehaviour
         //Return enemy to top
 
         //boss.SetInvulnerability(true);
+        StartCoroutine(VerticalOscillation());
         StartCoroutine(ShootDeflect());
         yield return null;
     }
