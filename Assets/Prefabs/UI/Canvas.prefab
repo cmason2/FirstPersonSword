@@ -1133,6 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  isInvulnerable: 0
 --- !u!1 &7864935190321370675
 GameObject:
   m_ObjectHideFlags: 0

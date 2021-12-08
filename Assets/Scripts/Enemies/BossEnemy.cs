@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BossEnemy : Enemy
 {
+    public static int bossHealth = 1;
+
     public override void TakeDamage(int damage)
     {
         Debug.Log(gameObject.name + " took " + damage + " damage!");
@@ -16,6 +18,8 @@ public class BossEnemy : Enemy
 
     protected override void Death()
     {
+        bossHealth = 0;
+        Destroy(GameObject.Find("BossHealthBar"));
         StartCoroutine(DeathAnimation());
     }
 

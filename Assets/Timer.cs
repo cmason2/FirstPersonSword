@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
         string minutes = ((int) t/60).ToString("00");
         string seconds = (t % 60).ToString("00.00");
 
-        if (BossHealthBar.currentHealth != 0)
+        if (BossEnemy.bossHealth != 0)
         {
             timerCounter.text = minutes + ":" + seconds;
         }
