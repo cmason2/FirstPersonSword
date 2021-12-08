@@ -9,6 +9,9 @@ public class Timer : MonoBehaviour
 
     private float startTime;
 
+    public static string finalTime;
+    public static int finalMinutes;
+    public static float finalSeconds;
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,16 @@ public class Timer : MonoBehaviour
         string minutes = ((int) t/60).ToString("00");
         string seconds = (t % 60).ToString("00.00");
 
-        timerCounter.text = "Time: " + minutes + ":" + seconds;
+        if (BossHealthBar.currentHealth != 0)
+        {
+            timerCounter.text = "Time: \n" + minutes + ":" + seconds;
+        }
+        else
+        {
+            finalTime = minutes + ":" + seconds;
+            finalMinutes = int.Parse(minutes);
+            finalSeconds = float.Parse(seconds);
+            return;
+        }
     }
 }
