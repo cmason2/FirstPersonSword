@@ -64,7 +64,7 @@ public class DeflectProjectile : MonoBehaviour
         }
         else if (obj.gameObject.name == "BossEnemy")
         {
-            if (deflectNumber == 11)
+            if (deflectNumber == 9)
             {
                 //damage boss, delete projectile
                 bossEnemyScript.TakeDamage(10);
@@ -78,7 +78,7 @@ public class DeflectProjectile : MonoBehaviour
                 //change target to player
                 direction = player.GetComponentInChildren<Camera>().transform.position - rb.position;
                 direction.Normalize();
-                projectileSpeed += 1f;
+                projectileSpeed += 2f;
             }
         }
         else if (obj.gameObject.tag == "Environment")
