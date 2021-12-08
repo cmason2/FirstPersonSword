@@ -37,10 +37,9 @@ public class BossMovement : MonoBehaviour
     {
         boss = GetComponent<BossEnemy>();
         player = FindObjectOfType<CharacterController>();
-        startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x, startPosition.y - 4.5f, endPosition.z);
         pressurePads = GameObject.FindObjectsOfType<Pad>();
         bridge = GameObject.FindObjectOfType<Bridge>();
+        StartCoroutine(VerticalOscillation());
         StartCoroutine(Phase1());
         //StartCoroutine(Phase2());
     }
@@ -64,6 +63,8 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator VerticalOscillation()
     {
+        startPosition = transform.position;
+        endPosition = new Vector3(startPosition.x, startPosition.y - 0.5f, endPosition.z);
         while (true)
         {
             while (Mathf.Abs(transform.position.y - endPosition.y) > stopError)
@@ -84,12 +85,16 @@ public class BossMovement : MonoBehaviour
     {
         for (int i = 0; i < numShots; i++)
         {
+            if(boss.HP <= wave2HP)
+            {
+                yield break;
+            }
             Debug.Log("Started shooting");
             //Instantiate, parent and position energy ball
             GameObject ball = Instantiate(energyBall, transform);
             ball.transform.localPosition = new Vector3(0f, 0.09f, 1.8f);
 
-            yield return new WaitForSeconds(1f);
+            yield return StartCoroutine(HPInterruptedWait(wave2HP, 1f));
 
             ball.transform.parent = null;
             if(homing)
@@ -99,7 +104,7 @@ public class BossMovement : MonoBehaviour
             
             ball.GetComponent<Projectile>().isFired = true;
 
-            yield return new WaitForSeconds(reloadTime);
+            yield return StartCoroutine(HPInterruptedWait(wave2HP, reloadTime));
         }
     }
 
@@ -161,7 +166,7 @@ public class BossMovement : MonoBehaviour
             Destroy(rb);
             spiderAgent.enabled = true;
             spiderMovement.enabled = true;
-            yield return StartCoroutine(HPInterruptedWait(wave2HP, 5f)); //Delay before spawning next spider
+            yield return StartCoroutine(HPInterruptedWait(wave2HP, 1f)); //Delay before spawning next spider
         }
     }
 
@@ -190,7 +195,7 @@ public class BossMovement : MonoBehaviour
     {
         while(boss.HP > 50)
         {
-            yield return StartCoroutine(ShootSingle(false, 10));
+            yield return StartCoroutine(ShootSingle(false, 5));
             spiderEnemies = FindObjectsOfType<SpiderMovement>();
             if(spiderEnemies.Length < 2)
             {

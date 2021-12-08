@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] float projectileSpeed = 3f;
+    [SerializeField] float projectileSpeed = 6f;
     [SerializeField] float homingAmount = 10f;
     public bool isFired = false;
     public bool isHoming = false;

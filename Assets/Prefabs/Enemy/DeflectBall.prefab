@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159f9ecf094135342b934ef8343d5c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 3
+  projectileSpeed: 5
   isFired: 0
   deflectNumber: 0
   direction: {x: 0, y: 0, z: 0}

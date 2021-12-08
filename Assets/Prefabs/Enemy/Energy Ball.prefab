@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90eccb6ba66ab3644981204ef7fd564c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 3
+  projectileSpeed: 5
   homingAmount: 10
   isFired: 0
   isHoming: 0

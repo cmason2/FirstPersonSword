@@ -78,7 +78,7 @@ public class DeflectProjectile : MonoBehaviour
                 //change target to player
                 direction = player.GetComponentInChildren<Camera>().transform.position - rb.position;
                 direction.Normalize();
-                projectileSpeed += 2f;
+                projectileSpeed += 1f;
             }
         }
         else if (obj.gameObject.tag == "Environment")
