@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int hp;
+    [SerializeField] protected int hp;
     public int HP
     {
         get { return hp; }
         set { hp = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    protected void CheckHealth()
     {
-        
+        if (hp <= 0)
+        {
+            Death();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void TakeDamage(int damage)
     {
+        Debug.Log(gameObject.name + " took " + damage + " damage!");
+        hp -= damage;
         CheckHealth();
     }
 
-    void CheckHealth()
+    protected virtual void Death()
     {
-        if (hp <= 0)
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Key
   - Door
+  - chest
+  - cupbord
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - UI
   - Equipped Item Layer
   - Interactable Objects
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

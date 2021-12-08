@@ -12,12 +12,14 @@ public class Projectile : MonoBehaviour
     private float timeActive = 0f;
     public Vector3 direction;
     CharacterController player;
+    Player playerScript;
     Rigidbody rb;
 
     private void Start()
     {
         player = FindObjectOfType<CharacterController>();
         rb = GetComponent<Rigidbody>();
+        playerScript = player.GetComponentInChildren<Player>();
     }
 
     private void Update()
@@ -55,7 +57,11 @@ public class Projectile : MonoBehaviour
         if (obj.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            obj.GetComponentInChildren<Player>().HP -= 10;
+            if(!playerScript.isInvulnerable)
+            {
+                playerScript.TakeDamage(10);
+                Debug.Log("Player taken damage from " + name);
+            }
         }
         else if (obj.gameObject.tag == "Environment")
         {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4565136102913923368}
   - component: {fileID: 4565136102913923369}
   - component: {fileID: 4565136102913923350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -99,15 +99,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouse_sens: 500
   hp: 100
-  hasSword: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isInvulnerable: 0
+  invulnerabilityTime: 1.5
+  timeSinceDamageTaken: 0
+  attackDelay: 0.5
+  hasSword: 1
+  keysUI: []
+  sword: {fileID: 9156198238812888958, guid: d2672d4d37c66dd419785334effe469e, type: 3}
+  torch: {fileID: 6398649758560100055, guid: d2de44d37ab99354383b1a85a1016df9, type: 3}
   regularFOV: 60
   zoomedFOV: 40
-  mask:
+  interactLayer:
     serializedVersion: 2
-    m_Bits: 128
-  sword: {fileID: 9156198238812888958, guid: d2672d4d37c66dd419785334effe469e, type: 3}
-  interact_distance: 2
-  attackDelay: 0.5
+    m_Bits: 0
+  interactDistance: 2
+  textDisplayTime: 3
+  textFadeTime: 1
 --- !u!1 &4565136102915124717
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4565136102915124716}
   - component: {fileID: 4565136102915124714}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Equipped Item Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +203,8 @@ GameObject:
   - component: {fileID: 4565136103008738180}
   - component: {fileID: 4565136103008738181}
   - component: {fileID: 4565136103008738179}
-  m_Layer: 0
+  - component: {fileID: 4668285852764100303}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -250,6 +261,18 @@ MonoBehaviour:
   playerSpeed: 4
   gravity: -19.62
   jumpHeight: 1
+--- !u!114 &4668285852764100303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565136103008738182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8982e8196ed13b04496e5bc3aaef64e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4565136103323730779
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,9 +284,9 @@ GameObject:
   - component: {fileID: 4565136103323730778}
   - component: {fileID: 4565136103323730776}
   - component: {fileID: 4565136103323730777}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
