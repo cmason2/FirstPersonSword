@@ -27,14 +27,17 @@ public class BossMovement : MonoBehaviour
     public bool deflectBallActive = false;
     bool wave2 = false;
 
+    private SpiderMovement[] spiderEnemies;
+
     // Start is called before the first frame update
     void Start()
     {
         boss = GetComponent<BossEnemy>();
         player = FindObjectOfType<CharacterController>();
-
-        //StartCoroutine(Phase1());
-        StartCoroutine(Phase2());
+        startPosition = transform.position;
+        endPosition = new Vector3(startPosition.x, startPosition.y - 4.5f, endPosition.z);
+        StartCoroutine(Phase1());
+        //StartCoroutine(Phase2());
     }
 
     // Update is called once per frame
@@ -56,9 +59,6 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator VerticalOscillation()
     {
-        startPosition = transform.position;
-        endPosition = new Vector3(startPosition.x, startPosition.y + 1.5f, endPosition.z);
-
         while (true)
         {
             while (Mathf.Abs(transform.position.y - endPosition.y) > stopError)
@@ -75,16 +75,16 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    IEnumerator ShootSingle(bool homing)
+    IEnumerator ShootSingle(bool homing, int numShots)
     {
-        while (true)
+        for (int i = 0; i < numShots; i++)
         {
             Debug.Log("Started shooting");
             //Instantiate, parent and position energy ball
             GameObject ball = Instantiate(energyBall, transform);
             ball.transform.localPosition = new Vector3(0f, 0.09f, 1.8f);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
 
             ball.transform.parent = null;
             if(homing)
@@ -122,21 +122,20 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemies()
+    IEnumerator SpawnEnemies(int numEnemies)
     {
         //Move boss down to ground level
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = startPosition + new Vector3(transform.position.x, -4.5f, transform.position.z);
-        yield return StartCoroutine(MoveOverTime(startPosition, endPosition, 3f));
+        //yield return StartCoroutine(MoveOverTime(transform.position, endPosition, 3f));
 
-        //Spawn spider enemies, i = number of enemies spawned during each spawning phase
-        for (int i = 0; i < 2; i++)
+        //Spawn spider enemies, numEnemies = number of enemies spawned during this spawning phase
+        for (int i = 0; i < numEnemies; i++)
         {
             GameObject spider = Instantiate(spiderPrefab, transform);
             spider.transform.localPosition = new Vector3(0f, 0f, 1.8f);
             spider.transform.localScale = Vector3.zero;
             NavMeshAgent spiderAgent = spider.GetComponent<NavMeshAgent>();
             SpiderMovement spiderMovement = spider.GetComponent<SpiderMovement>();
+            spiderMovement.chaseDistance = 20f;
             spiderMovement.enabled = false;
             spiderAgent.enabled = false;
             
@@ -164,7 +163,7 @@ public class BossMovement : MonoBehaviour
         }
 
         //Move boss upwards to normal height
-        yield return StartCoroutine(MoveOverTime(transform.position, startPosition, 3f));
+        //yield return StartCoroutine(MoveOverTime(transform.position, startPosition, 3f));
     }
 
     IEnumerator HPInterruptedWait(int healthLimit, float timeToWait)
@@ -190,14 +189,14 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator Phase1()
     {
-        IEnumerator coroutine;
-        coroutine = ShootSingle(true);
         while(boss.HP > 50)
         {
-            StartCoroutine(coroutine);
-            yield return new WaitForSeconds(5f);
-            StopCoroutine(coroutine);
-            yield return StartCoroutine(SpawnEnemies());
+            yield return StartCoroutine(ShootSingle(false, 10));
+            spiderEnemies = FindObjectsOfType<SpiderMovement>();
+            if(spiderEnemies.Length < 2)
+            {
+                yield return StartCoroutine(SpawnEnemies(2 - spiderEnemies.Length));
+            }
         }
         StartCoroutine(Phase2());
     }
@@ -205,9 +204,9 @@ public class BossMovement : MonoBehaviour
     IEnumerator Phase2()
     {
         //Return enemy to top
-
+        yield return StartCoroutine(MoveOverTime(transform.position, startPosition, (startPosition - transform.position).magnitude / 4));
         //boss.SetInvulnerability(true);
-        StartCoroutine(VerticalOscillation());
+        //StartCoroutine(VerticalOscillation());
         StartCoroutine(ShootDeflect());
         yield return null;
     }

@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Death()
     {
-        Destroy(gameObject);
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<ParticleSystem>().Stop();
     }
 }

@@ -11,7 +11,7 @@ public class DeflectEnemy : Enemy
     Color deflectColor = new Color(0f, 1f, 0f);
     Color normalColor = new Color(1f, 0f, 0f);
 
-    private void Start()
+    protected override void Start()
     {
         projectile = GetComponent<DeflectProjectile>();
         light = GetComponentInChildren<Light>();

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class SpiderMovement : MonoBehaviour
 {
-    [SerializeField] float chaseDistance = 10f;
+    public float chaseDistance = 10f;
     [SerializeField] float closeRotationSpeed = 0.05f;
     [SerializeField] float attackDistance = 2f;
     [SerializeField] float attackDelay = 2f;

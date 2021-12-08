@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6116696515663222375}
   - component: {fileID: -26107833556239888}
   - component: {fileID: 8834942872670445098}
+  - component: {fileID: 8781166936862305415}
+  - component: {fileID: 188067495867873696}
   - component: {fileID: 8305812148621728035}
   m_Layer: 8
   m_Name: Energy Ball
@@ -130,6 +132,37 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8781166936862305415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116696515663222374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24ddba85545484d9030c744a193a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
+  isInvulnerable: 0
+--- !u!114 &188067495867873696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116696515663222374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90eccb6ba66ab3644981204ef7fd564c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 3
+  homingAmount: 10
+  isFired: 0
+  isHoming: 0
+  direction: {x: 0, y: 0, z: 0}
 --- !u!198 &8305812148621728035
 ParticleSystem:
   m_ObjectHideFlags: 0
