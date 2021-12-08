@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
 
         if (BossHealthBar.currentHealth != 0)
         {
-            timerCounter.text = "Time: \n" + minutes + ":" + seconds;
+            timerCounter.text = minutes + ":" + seconds;
         }
         else
         {
