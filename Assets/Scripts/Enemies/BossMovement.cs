@@ -28,6 +28,9 @@ public class BossMovement : MonoBehaviour
     bool wave2 = false;
 
     private SpiderMovement[] spiderEnemies;
+    private SpiderEnemy[] allSpiders;
+    private Pad[] pressurePads;
+    private Bridge bridge;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,8 @@ public class BossMovement : MonoBehaviour
         player = FindObjectOfType<CharacterController>();
         startPosition = transform.position;
         endPosition = new Vector3(startPosition.x, startPosition.y - 4.5f, endPosition.z);
+        pressurePads = GameObject.FindObjectsOfType<Pad>();
+        bridge = GameObject.FindObjectOfType<Bridge>();
         StartCoroutine(Phase1());
         //StartCoroutine(Phase2());
     }
@@ -124,9 +129,6 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator SpawnEnemies(int numEnemies)
     {
-        //Move boss down to ground level
-        //yield return StartCoroutine(MoveOverTime(transform.position, endPosition, 3f));
-
         //Spawn spider enemies, numEnemies = number of enemies spawned during this spawning phase
         for (int i = 0; i < numEnemies; i++)
         {
@@ -161,9 +163,6 @@ public class BossMovement : MonoBehaviour
             spiderMovement.enabled = true;
             yield return StartCoroutine(HPInterruptedWait(wave2HP, 5f)); //Delay before spawning next spider
         }
-
-        //Move boss upwards to normal height
-        //yield return StartCoroutine(MoveOverTime(transform.position, startPosition, 3f));
     }
 
     IEnumerator HPInterruptedWait(int healthLimit, float timeToWait)
@@ -203,8 +202,17 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator Phase2()
     {
-        //Return enemy to top
-        yield return StartCoroutine(MoveOverTime(transform.position, startPosition, (startPosition - transform.position).magnitude / 4));
+        //Remove all spider enemies, including dead ones (bridge will retract)
+        allSpiders = FindObjectsOfType<SpiderEnemy>();
+        foreach (SpiderEnemy spider in allSpiders)
+        {
+            Destroy(spider.gameObject);
+        }
+        foreach (Pad pad in pressurePads)
+        {
+            pad.isActivated = false;
+        }
+        bridge.CheckPadStatus();
         //boss.SetInvulnerability(true);
         //StartCoroutine(VerticalOscillation());
         StartCoroutine(ShootDeflect());
