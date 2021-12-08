@@ -5,20 +5,13 @@ using UnityEngine.AI;
 
 public class SpiderEnemy : Enemy
 {
-    Renderer rendererRef;
     Animator anim;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        rendererRef = GetComponentInChildren<Renderer>();
+        base.Start();
         anim = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override void TakeDamage(int damage)
@@ -28,14 +21,6 @@ public class SpiderEnemy : Enemy
         CheckHealth();
         anim.SetTrigger("triggerDamaged");
         StartCoroutine(ApplyDamageEffect());
-    }
-
-    private IEnumerator ApplyDamageEffect()
-    {
-        rendererRef.material.SetColor("_EmissionColor", new Color(0.3f, 0f, 0f));
-            rendererRef.material.EnableKeyword("_EMISSION");
-            yield return new WaitForSeconds(0.5f);
-            rendererRef.material.DisableKeyword("_EMISSION");
     }
 
     protected override void Death()

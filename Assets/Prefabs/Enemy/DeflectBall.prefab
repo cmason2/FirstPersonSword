@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6116696515663222375}
   - component: {fileID: -26107833556239888}
   - component: {fileID: 8834942872670445098}
-  - component: {fileID: 8781166936862305415}
-  - component: {fileID: 188067495867873696}
+  - component: {fileID: 5728247340711769425}
+  - component: {fileID: 5827925502787719807}
   - component: {fileID: 8305812148621728035}
   m_Layer: 8
-  m_Name: Energy Ball
-  m_TagString: Enemy
+  m_Name: DeflectBall
+  m_TagString: DeflectBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-26107833556239888
 Rigidbody:
@@ -132,7 +132,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8781166936862305415
+--- !u!114 &5728247340711769425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,12 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6116696515663222374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c24ddba85545484d9030c744a193a11, type: 3}
+  m_Script: {fileID: 11500000, guid: aeb541e0d9aba9949a3e0789c01f77c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 0
   isInvulnerable: 0
---- !u!114 &188067495867873696
+  ps: {fileID: 8305812148621728035}
+--- !u!114 &5827925502787719807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,13 +156,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6116696515663222374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90eccb6ba66ab3644981204ef7fd564c, type: 3}
+  m_Script: {fileID: 11500000, guid: 159f9ecf094135342b934ef8343d5c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 5
-  homingAmount: 10
   isFired: 0
-  isHoming: 0
+  deflectNumber: 0
   direction: {x: 0, y: 0, z: 0}
 --- !u!198 &8305812148621728035
 ParticleSystem:
@@ -335,7 +335,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4770,7 +4770,7 @@ GameObject:
   - component: {fileID: 1482772008668674385}
   m_Layer: 8
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: DeflectBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4800,7 +4800,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.96470594, g: 0.7843138, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 5
   m_SpotAngle: 30

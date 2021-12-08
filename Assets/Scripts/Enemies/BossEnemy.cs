@@ -5,14 +5,6 @@ using UnityEngine.AI;
 
 public class BossEnemy : Enemy
 {
-    Renderer[] renderersRef;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        renderersRef = GetComponentsInChildren<Renderer>();
-    }
-
     public override void TakeDamage(int damage)
     {
         Debug.Log(gameObject.name + " took " + damage + " damage!");
@@ -22,21 +14,17 @@ public class BossEnemy : Enemy
         StartCoroutine(ApplyDamageEffect());
     }
 
-    private IEnumerator ApplyDamageEffect()
+    protected override void Death()
     {
-        foreach (Renderer renderer in renderersRef)
-        {
-            if(renderer != null)
-            {
-                renderer.material.SetColor("_EmissionColor", new Color(0.3f, 0f, 0f));
-                renderer.material.EnableKeyword("_EMISSION");
-            }
-        }
-        yield return new WaitForSeconds(0.5f);
-        foreach (Renderer renderer in renderersRef)
-        {
-            if(renderer != null)
-                renderer.material.DisableKeyword("_EMISSION");
-        }
+        StartCoroutine(DeathAnimation());
+    }
+
+    IEnumerator DeathAnimation()
+    {
+        gameObject.GetComponentInChildren<Animation>().Stop();
+        Destroy(gameObject.GetComponent<BossMovement>());
+        gameObject.AddComponent<Rigidbody>().AddTorque(transform.right * 100f);
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 }

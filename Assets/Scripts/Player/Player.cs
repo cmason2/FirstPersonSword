@@ -23,10 +23,12 @@ public class Player : MonoBehaviour
     public bool isInvulnerable = false;
     [SerializeField] float invulnerabilityTime = 1.5f;
     public float timeSinceDamageTaken = 0f;
-    [SerializeField] float attackDelay = 0.5f;
+    [SerializeField] float attackDelay = 0.75f;
     float timeSinceAttack = 0f;
     float attackDistance = 1f;
     GameObject targetedEnemy;
+    Enemy targetedEnemyScript;
+    Animator swordAnimator;
 
     //Inventory
     [SerializeField] bool hasSword = false;
@@ -68,9 +70,13 @@ public class Player : MonoBehaviour
         enemyLayer = LayerMask.GetMask("Enemy");
         interactLayer = LayerMask.GetMask("Interactable Objects");
         timeSinceDamageTaken = invulnerabilityTime;
+        timeSinceAttack = attackDelay;
         //Check if player has already picked up items and equip
-        if(hasSword)
+        if (hasSword)
+        {
             EquipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+            swordAnimator = GetComponentInChildren<Animator>();
+        }
         if (hasTorch)
             EquipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
     }
@@ -159,6 +165,7 @@ public class Player : MonoBehaviour
                     Destroy(targetedObject);
                     hasSword = true;
                     EquipItem(sword, new Vector3(0.495999992f, -0.131000042f, 0.887000084f), new Quaternion(-0.682276845f, -0.69443506f, -0.147758752f, 0.17442967f));
+                    swordAnimator = GetComponentInChildren<Animator>();
                     StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Sword equipped\nPress Left mouse button to attack", textDisplayTime, textFadeTime));
                 }
                 else if (targetedObject.tag == "Door")
@@ -206,16 +213,25 @@ public class Player : MonoBehaviour
     void Attack()
     {
         timeSinceAttack += Time.deltaTime;
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
+        if(Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay)
         {
-            Debug.Log("Looking at " + hitInfo.collider.gameObject.name);
-            targetedEnemy = hitInfo.collider.gameObject;
-            if (Input.GetMouseButton(0) && hasSword && timeSinceAttack >= attackDelay)
+            swordAnimator.SetTrigger("click");
+            timeSinceAttack = 0f;
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, attackDistance, enemyLayer))
             {
-                targetedEnemy.GetComponent<Enemy>().TakeDamage(10);
-                timeSinceAttack = 0f;
+                targetedEnemy = hitInfo.collider.gameObject;
+                targetedEnemyScript = targetedEnemy.GetComponent<Enemy>();
+                if (!targetedEnemyScript.isInvulnerable)
+                {
+                    targetedEnemyScript.TakeDamage(10);
+                    if (targetedEnemy.tag == "DeflectBall")
+                    {
+                        targetedEnemy.GetComponent<DeflectProjectile>().direction = transform.forward; //Deflect where the player is looking.
+                    }
+                }
             }
         }
+        
     }
     void Zoom()
     {
@@ -250,14 +266,17 @@ public class Player : MonoBehaviour
         GameObject equippedItem = Instantiate(prefab, transform);
         equippedItem.transform.localPosition = position;
         equippedItem.transform.localRotation = rotation;
+        if(equippedItem.GetComponent<BoxCollider>() != null)
+        {
+            Destroy(equippedItem.GetComponent<BoxCollider>()); //Remove colliders from objects once equipped
+        }
         SetLayerRecursively(equippedItem, 6);
     }
 
     void HoldItem(GameObject item)
     {
         if (item.GetComponent<Rigidbody>())
-            //Destroy(item.GetComponent<Rigidbody>());
-            item.GetComponent<Rigidbody>().isKinematic = true;
+            item.GetComponent<Rigidbody>().isKinematic = true; //Prevent forces and collisions
         item.transform.SetParent(transform);
         item.transform.localPosition = new Vector3(0f, -0f, 2f);
         SetLayerRecursively(item, 6);

@@ -2,29 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class DeflectProjectile : MonoBehaviour
 {
-    [SerializeField] float projectileSpeed = 6f;
-    [SerializeField] float homingAmount = 10f;
+    [SerializeField] float projectileSpeed = 5f;
     public bool isFired = false;
-    public bool isHoming = false;
     private bool isMoving = false;
-    private float timeActive = 0f;
+    public int deflectNumber = 0;
     public Vector3 direction;
     CharacterController player;
     Player playerScript;
+    GameObject boss;
+    BossEnemy bossEnemyScript;
+    BossMovement bossMovementScript;
     Rigidbody rb;
 
     private void Start()
     {
         player = FindObjectOfType<CharacterController>();
-        rb = GetComponent<Rigidbody>();
         playerScript = player.GetComponentInChildren<Player>();
+        boss = GameObject.Find("BossEnemy");
+        bossEnemyScript = boss.GetComponent<BossEnemy>();
+        bossMovementScript = boss.GetComponent<BossMovement>();
+        bossMovementScript.deflectBallActive = true;
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnDestroy()
+    {
+        bossMovementScript.deflectBallActive = false;
     }
 
     private void Update()
     {
-        timeActive += Time.deltaTime;
         if(isFired)
         {
             direction = player.GetComponentInChildren<Camera>().transform.position - rb.position;
@@ -32,22 +41,12 @@ public class Projectile : MonoBehaviour
             isFired = false;
             isMoving = true;
         }
-        if (timeActive > 10)
-            GetComponent<ParticleSystem>().Stop();
     }
 
     private void FixedUpdate()
     {
         if(isMoving)
         {
-            if(isHoming)
-            {
-                direction = player.GetComponentInChildren<Camera>().transform.position - rb.position;
-                direction.Normalize();
-                Vector3 rotationAmount = Vector3.Cross(transform.forward, direction);
-                rb.angularVelocity = rotationAmount * homingAmount;
-                rb.velocity = transform.forward * projectileSpeed;
-            }
             rb.velocity = direction * projectileSpeed;
         }
     }
@@ -61,6 +60,25 @@ public class Projectile : MonoBehaviour
             {
                 playerScript.TakeDamage(10);
                 Debug.Log("Player taken damage from " + name);
+            }
+        }
+        else if (obj.gameObject.name == "BossEnemy")
+        {
+            if (deflectNumber == 9)
+            {
+                //damage boss, delete projectile
+                bossEnemyScript.TakeDamage(10);
+                rb.isKinematic = true;
+                GetComponent<ParticleSystem>().Stop();
+            }
+            else if(deflectNumber % 2 == 1)
+            {
+                //increment deflect
+                GetComponent<DeflectEnemy>().TakeDamage(10);
+                //change target to player
+                direction = player.GetComponentInChildren<Camera>().transform.position - rb.position;
+                direction.Normalize();
+                projectileSpeed += 2f;
             }
         }
         else if (obj.gameObject.tag == "Environment")
