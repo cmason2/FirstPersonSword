@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class BossEnemy : Enemy
 {
-
     public override void TakeDamage(int damage)
     {
         Debug.Log(gameObject.name + " took " + damage + " damage!");
         hp -= damage;
+        BossHealthBar.currentHealth = hp;//new
         CheckHealth();
         StartCoroutine(ApplyDamageEffect());
     }
