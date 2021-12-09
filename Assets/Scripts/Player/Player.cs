@@ -146,6 +146,13 @@ public class Player : MonoBehaviour
                 {
                     targetedObject.GetComponent<Animator>().SetTrigger("opendoor");
                 }
+                if (targetedObject.tag == "lever")
+                {
+                    targetedObject.GetComponent<Animator>().SetTrigger("pull");
+
+                   
+
+                }
                 if (targetedObject.tag == "Key")
                 {
                     Destroy(targetedObject);

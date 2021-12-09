@@ -11,6 +11,8 @@ TagManager:
   - chest
   - cupbord
   - DeflectBall
+  - lever
+  - exit_spike
   layers:
   - Default
   - TransparentFX
