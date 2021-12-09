@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 2156503699680179158}
   - component: {fileID: 3618736529674766467}
   - component: {fileID: 6956904053202903605}
+  - component: {fileID: 5079959467922825931}
   m_Layer: 0
   m_Name: smallSpike_Cone
   m_TagString: Untagged
@@ -219,11 +220,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956904053202903604}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8542427, y: 2.4849226, z: 0.8542427}
-  m_Center: {x: 0.00000023841858, y: 1.2827104, z: 0.0000002682209}
+  m_Size: {x: 1.36, y: 3.01, z: 1.35}
+  m_Center: {x: 0.03, y: 1.55, z: 0.02}
 --- !u!95 &6956904053202903605
 Animator:
   serializedVersion: 3
@@ -243,6 +244,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5079959467922825931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956904053202903604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e59d0d82ab795844a6b51c631544861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6991689272686837638
 GameObject:
   m_ObjectHideFlags: 0
