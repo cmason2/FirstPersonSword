@@ -108,6 +108,8 @@ GameObject:
   - component: {fileID: 5265947752334990108}
   - component: {fileID: 8382719025340478831}
   - component: {fileID: 6593344110829882938}
+  - component: {fileID: 866716546}
+  - component: {fileID: 8822092412988865698}
   m_Layer: 0
   m_Name: Spike_Cone
   m_TagString: Untagged
@@ -123,7 +125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663143340382954637}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6632389328704554876}
@@ -186,11 +188,42 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663143340382954637}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8542427, y: 2.4849226, z: 0.8542427}
-  m_Center: {x: 0.00000023841858, y: 1.2827104, z: 0.0000002682209}
+  m_Size: {x: 1.23, y: 3, z: 1.15}
+  m_Center: {x: 0.00000023841858, y: 0.99, z: 0.0000002682209}
+--- !u!95 &866716546
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663143340382954637}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 553d0001aaa223b4abcc4e4b57c549b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8822092412988865698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663143340382954637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390d37861b1038943bb7f589bbbb7c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6287353115573657030
 GameObject:
   m_ObjectHideFlags: 0

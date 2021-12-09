@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3325675464642343083}
+  - component: {fileID: 7317067853044623474}
+  - component: {fileID: 5346086519413072684}
   m_Layer: 0
   m_Name: Spike(swithroom)
   m_TagString: Untagged
@@ -23,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2696808022198282769}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -1.279, z: -1}
   m_LocalScale: {x: 0.5976349, y: 0.3865395, z: 0.33731195}
   m_Children:
@@ -32,6 +34,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7317067853044623474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696808022198282769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.33, y: 5.14, z: 1}
+  m_Center: {x: -0.02, y: 0, z: 0}
+--- !u!114 &5346086519413072684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696808022198282769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e59d0d82ab795844a6b51c631544861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3003220673009241930
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +262,7 @@ GameObject:
   - component: {fileID: 5584292521042859889}
   - component: {fileID: 4267637112453098699}
   - component: {fileID: 466316390704874168}
-  - component: {fileID: 3003220673705687533}
+  - component: {fileID: 1787632931}
   m_Layer: 0
   m_Name: Spike_Cone
   m_TagString: Untagged
@@ -306,7 +333,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3003220673705687533
+--- !u!65 &1787632931
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,4 +345,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.8542427, y: 2.4849226, z: 0.8542427}
-  m_Center: {x: 0.00000023841858, y: 1.2827104, z: 0.0000002682209}
+  m_Center: {x: 0.00000023841858, y: 1.2827106, z: 0.0000002682209}
