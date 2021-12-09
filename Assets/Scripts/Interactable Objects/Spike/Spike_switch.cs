@@ -6,7 +6,7 @@ public class Spike_switch : MonoBehaviour
 {
     Animator[] animators;
     GameObject informationTextObject;
-    [SerializeField] float textDisplayTime = 5f;
+    [SerializeField] float textDisplayTime = 2f;
     [SerializeField] float textFadeTime = 1f;
 
     // Start is called before the first frame update
