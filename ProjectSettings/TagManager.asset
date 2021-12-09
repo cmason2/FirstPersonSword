@@ -13,6 +13,7 @@ TagManager:
   - DeflectBall
   - lever
   - exit_spike
+  - exit_Door_spike
   layers:
   - Default
   - TransparentFX

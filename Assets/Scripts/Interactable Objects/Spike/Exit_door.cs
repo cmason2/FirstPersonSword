@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Exit_door : MonoBehaviour
 {
+
     Animator[] animators;
 
     // Start is called before the first frame update
