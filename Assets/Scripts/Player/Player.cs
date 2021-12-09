@@ -150,7 +150,6 @@ public class Player : MonoBehaviour
                 {
                     targetedObject.GetComponent<Animator>().SetTrigger("pull");
 
-                   
 
                 }
                 if (targetedObject.tag == "Key")
