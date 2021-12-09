@@ -1051,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887171610735631364, guid: b9bec2c20809e864f8e9d7729dbc02f5, type: 3}
       propertyPath: m_Name
-      value: Medieval_Double_Doors
+      value: EntranceDoor
       objectReference: {fileID: 0}
     - target: {fileID: 8887171610735631364, guid: b9bec2c20809e864f8e9d7729dbc02f5, type: 3}
       propertyPath: m_TagString
@@ -10438,7 +10438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887171610735631364, guid: b9bec2c20809e864f8e9d7729dbc02f5, type: 3}
       propertyPath: m_Name
-      value: Medieval_Double_Doors (1)
+      value: ExitDoor
       objectReference: {fileID: 0}
     - target: {fileID: 8887171610735631364, guid: b9bec2c20809e864f8e9d7729dbc02f5, type: 3}
       propertyPath: m_TagString

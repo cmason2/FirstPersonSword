@@ -69,7 +69,7 @@ public class DeflectProjectile : MonoBehaviour
                 //damage boss, delete projectile
                 bossEnemyScript.TakeDamage(10);
                 rb.isKinematic = true;
-                GetComponent<ParticleSystem>().Stop();
+                Destroy(gameObject);
             }
             else if(deflectNumber % 2 == 1)
             {
