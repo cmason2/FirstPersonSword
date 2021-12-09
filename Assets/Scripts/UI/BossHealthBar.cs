@@ -5,33 +5,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class BossHealthBar : BossEnemy //A UI element should not inherit from an Enemy class, but it works so ok
+public class BossHealthBar : MonoBehaviour //A UI element should not inherit from an Enemy class, but it works so ok
 {
-    public static int maxhealth;
-    public static int currentHealth;
-    private Image healthBar;
+    public Slider healthSlider;
+    public Image fillImage;
 
-    void Start()
+    private void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        if(sceneName != "Boss")
+        if (sceneName != "Boss")
         {
             Destroy(gameObject);
         }
-        healthBar = GetComponent<Image>();
-        currentHealth = hp;
-        maxhealth = hp;
-
     }
-
-    void Update()
+    public void SetHealth(int hp)
     {
-        healthBar.fillAmount = (float)currentHealth / (float)maxhealth;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+        healthSlider.value = hp;
     }
 
-
-
+    public void SetMaxHealth(int maxHealth)
+    {
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
+    }
 
 }
-
