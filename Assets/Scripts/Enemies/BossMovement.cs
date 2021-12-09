@@ -25,7 +25,6 @@ public class BossMovement : MonoBehaviour
 
     int wave2HP = 50;
     public bool deflectBallActive = false;
-    bool wave2 = false;
 
     private SpiderMovement[] spiderEnemies;
     private SpiderEnemy[] allSpiders;
@@ -42,16 +41,6 @@ public class BossMovement : MonoBehaviour
         StartCoroutine(VerticalOscillation());
         StartCoroutine(Phase1());
         //StartCoroutine(Phase2());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        FaceTarget(player.transform.position);
-        if (boss.HP < 50)
-        {
-            wave2 = true;
-        }
     }
 
     private void FaceTarget(Vector3 destination) //https://stackoverflow.com/questions/35861951/unity-navmeshagent-wont-face-the-target-object-when-reaches-stopping-distance

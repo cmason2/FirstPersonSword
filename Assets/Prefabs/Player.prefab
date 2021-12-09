@@ -117,7 +117,7 @@ MonoBehaviour:
   zoomedFOV: 40
   interactLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   interactDistance: 2
   textDisplayTime: 3
   textFadeTime: 1
@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8982e8196ed13b04496e5bc3aaef64e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerCounter: {fileID: 0}
 --- !u!1 &4565136103323730779
 GameObject:
   m_ObjectHideFlags: 0

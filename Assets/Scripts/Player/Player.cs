@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float mouse_sens = 100f;
     float x_rotation = 0f;
 
+    GameObject fadeOverlay;
+
     //Player health
     [SerializeField] private int hp = 100;
     public int HP
@@ -78,7 +80,11 @@ public class Player : MonoBehaviour
             swordAnimator = GetComponentInChildren<Animator>();
         }
         if (hasTorch)
+        {
             EquipItem(torch, new Vector3(-0.36500001f, -0.324000001f, 0.493000001f), Quaternion.identity);
+        }
+        fadeOverlay = GameObject.Find("FadeOverlay");
+        StartCoroutine(fadeOverlay.GetComponent<SceneFade>().Fade(true, 2f));
     }
 
     private void Update()

@@ -8,14 +8,14 @@ public class BossEnemy : Enemy
 {
     public static int bossHealth = 1;
     BossHealthBar healthBar;
-    Image fadeImage;
+    GameObject fadeOverlay;
 
     protected override void Start()
     {
         base.Start();
         healthBar = FindObjectOfType<BossHealthBar>();
         healthBar.SetMaxHealth(hp);
-        fadeImage = GameObject.Find("FadeOverlay").GetComponent<Image>();
+        fadeOverlay = GameObject.Find("FadeOverlay");
     }
 
     public override void TakeDamage(int damage)
@@ -41,16 +41,8 @@ public class BossEnemy : Enemy
         Destroy(gameObject.GetComponent<BossMovement>());
         gameObject.AddComponent<Rigidbody>().AddTorque(transform.right * 100f);
         yield return new WaitForSeconds(3f);
-        yield return StartCoroutine(FadeScene(3f));
+        yield return StartCoroutine(fadeOverlay.GetComponent<SceneFade>().Fade(false, 3f));
+        yield return new WaitForSeconds(1f);
         //Move to Victory scene here
-    }
-
-    IEnumerator FadeScene(float fadeTime)
-    {
-        for (float i = 0; i <= fadeTime; i += Time.deltaTime)
-        {
-            fadeImage.color = new Color(0, 0, 0, i / fadeTime);
-            yield return null;
-        }
     }
 }
