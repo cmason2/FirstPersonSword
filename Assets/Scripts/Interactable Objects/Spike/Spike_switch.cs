@@ -26,8 +26,5 @@ public class Spike_switch : MonoBehaviour
  
         }
         StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Use Switch to disable", textDisplayTime, textFadeTime));
-
-
-
     }
 }
