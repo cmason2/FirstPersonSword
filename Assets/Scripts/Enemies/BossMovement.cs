@@ -43,6 +43,11 @@ public class BossMovement : MonoBehaviour
         //StartCoroutine(Phase2());
     }
 
+    private void Update()
+    {
+        FaceTarget(player.transform.position);
+    }
+
     private void FaceTarget(Vector3 destination) //https://stackoverflow.com/questions/35861951/unity-navmeshagent-wont-face-the-target-object-when-reaches-stopping-distance
     {
         Vector3 lookPos = destination - transform.position;
@@ -208,7 +213,6 @@ public class BossMovement : MonoBehaviour
         }
         bridge.CheckPadStatus();
         //boss.SetInvulnerability(true);
-        //StartCoroutine(VerticalOscillation());
         StartCoroutine(ShootDeflect());
         yield return null;
     }
