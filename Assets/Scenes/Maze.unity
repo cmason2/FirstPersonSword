@@ -2118,7 +2118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d64a8d3377e084d9cbf79b80bc3704d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   isOpen: 0
   isMoving: 0
 --- !u!65 &505070450
@@ -2295,7 +2295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887171610735631364, guid: b9bec2c20809e864f8e9d7729dbc02f5, type: 3}
       propertyPath: m_Name
-      value: Medieval_Double_Doors
+      value: Exit Door
       objectReference: {fileID: 0}
     - target: {fileID: 8887171610735631364, guid: b9bec2c20809e864f8e9d7729dbc02f5, type: 3}
       propertyPath: m_Layer
@@ -9697,7 +9697,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2104373914984861296, guid: 946f169af98755042a4902f078834fc0, type: 3}
       propertyPath: m_Name
-      value: lid
+      value: Chest
       objectReference: {fileID: 0}
     - target: {fileID: 2104373914984861296, guid: 946f169af98755042a4902f078834fc0, type: 3}
       propertyPath: m_TagString

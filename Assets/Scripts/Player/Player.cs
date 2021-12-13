@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
                         }
                         else
                         {
-                            StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Door is locked, find all keys to unlock it", textDisplayTime, textFadeTime));
+                            StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Door is locked, collect all three keys to unlock it", textDisplayTime, textFadeTime));
                         }
                     }
                     else if (!door.isMoving)
