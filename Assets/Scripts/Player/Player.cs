@@ -378,6 +378,7 @@ public class Player : MonoBehaviour
 
     public void SceneChangeGameOver()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("GameOver");
     }
 }
