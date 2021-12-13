@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -139,7 +140,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, interactDistance, interactLayer))
         {
             targetedObject = hitInfo.collider.gameObject;
-            Debug.Log("In range of " + targetedObject.name);
+            //Debug.Log("In range of " + targetedObject.name);
             interactText.text = targetedObject.name + "\nPress 'E' to interact";
             if (Input.GetKeyDown("e"))
             {
@@ -207,6 +208,37 @@ public class Player : MonoBehaviour
                         {
                             StartCoroutine(door.RotateDoor(true, 1f));
                         }
+                    }
+                }
+                else if (targetedObject.tag == "Door1")
+                {
+                    Door1 door = targetedObject.GetComponent<Door1>();
+                    if (door.isLocked)
+                    {
+                        if (numKeys == 3)
+                        {
+                            door.isLocked = false;
+                            numKeys = 0;
+                            UpdateKeyUI();
+                            StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("You unlocked the door with your keys", textDisplayTime, textFadeTime));
+                        }
+                        else
+                        {
+                            StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Door is locked, collect all three keys to unlock it", textDisplayTime, textFadeTime));
+                        }
+                    }
+                    else if (!door.isMoving)
+                    { 
+                        int health = hp;
+                        Debug.Log(health);
+                        if(!door.isOpen)
+                        {
+                            door.DoorOpen(false);
+                        }
+                        Invoke("SceneChangeMaze",2.45f);
+                        //Debug.Log(hp);
+                        
+                        hp = health;
                     }
                 }
                 else if (targetedObject.name == "Dead Spider")
@@ -334,5 +366,10 @@ public class Player : MonoBehaviour
                 keysUI[i].enabled = false;
             }
         }
+    }
+
+    public void SceneChangeMaze()
+    {
+        SceneManager.LoadScene("Maze");
     }
 }
