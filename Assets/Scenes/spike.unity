@@ -10438,7 +10438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6818232785864869958, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
       propertyPath: m_Name
-      value: Lever
+      value: Switch
       objectReference: {fileID: 0}
     - target: {fileID: 6818232786060344772, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
       propertyPath: m_Layer
