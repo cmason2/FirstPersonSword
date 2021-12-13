@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
@@ -15,11 +16,13 @@ public class MenuUI : MonoBehaviour
     public void startGame()
     {
         Debug.Log("Load the first scene");
-        //SceneManager.LoadScene("")
+        SceneManager.LoadScene(1);
     }
 
     public void quitGame()
     {
+        Debug.Log("Quit Game");
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
         Debug.Log("Quit Game");
     }
