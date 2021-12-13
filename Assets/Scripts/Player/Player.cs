@@ -342,6 +342,9 @@ public class Player : MonoBehaviour
         if(hp <= 0)
         {
             Debug.Log("Player is dead, what a shame!");
+            GetComponentInParent<PlayerMovement>().enabled = false;
+            StartCoroutine(fadeOverlay.GetComponent<SceneFade>().Fade(false, 1f));
+            Invoke("SceneChangeGameOver", 1f);
         }
     }
 
@@ -371,5 +374,10 @@ public class Player : MonoBehaviour
     public void SceneChangeMaze()
     {
         SceneManager.LoadScene("Maze");
+    }
+
+    public void SceneChangeGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
