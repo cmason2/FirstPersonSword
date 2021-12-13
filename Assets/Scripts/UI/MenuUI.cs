@@ -22,7 +22,9 @@ public class MenuUI : MonoBehaviour
     public void quitGame()
     {
         Debug.Log("Quit Game");
-        UnityEditor.EditorApplication.isPlaying = false;
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
         Application.Quit();
         Debug.Log("Quit Game");
     }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3706470494948481476}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: lockbar.r_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5210820323522705632}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Knob.l_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2607964338333538803}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Armature_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6978673518227313927}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: locker.l_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7380268069255113676}
   - component: {fileID: 8526337888501805583}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GLTFNode_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8617359948312350721}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: locker.r_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797379647583241139}
   - component: {fileID: 2914297920098013742}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GLTFNode_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2764048250717871834}
   - component: {fileID: 3842944270505889289}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Hinge.r_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2694167661533277094}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Left door_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7530047783577388992}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5024154204689470928}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BalconyDoor.Frame.lp_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 5823240113042409121}
   - component: {fileID: 4205232534758270625}
   - component: {fileID: 1758697313480510328}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5307917662552896553}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: lockbar.l_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7479507676294002359}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: RootNode (model correction matrix)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1062680849573878530}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GLTF_created_0_rootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5122576627772407787}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: RIght door_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8844431259301163063}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GLTF_SceneRootNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7079061683937040319}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Knob.r_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3812179369837766951}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GLTF_created_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6691344588472735901}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: RootNode (gltf orientation matrix)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6704815530324525154}
   - component: {fileID: 3842944272295047703}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Hinge.l_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
