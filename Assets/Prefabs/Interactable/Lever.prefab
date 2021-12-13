@@ -76,8 +76,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 50, z: 300}
-  m_Center: {x: 0, y: -41.36, z: -57.98}
+  m_Size: {x: 53.57261, y: 60.701775, z: 45.928955}
+  m_Center: {x: -0.43695608, y: -0.31088015, z: -20.559025}
 --- !u!114 &676963018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 6818232786060344768}
   - component: {fileID: 6818232786060344769}
   - component: {fileID: 6818232786060344770}
-  - component: {fileID: 6818232786060344783}
   m_Layer: 7
   m_Name: Disable spike wall
   m_TagString: lever
@@ -193,19 +192,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &6818232786060344783
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6818232786060344772}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 50.788277, y: 7.7676187, z: 30.090721}
-  m_Center: {x: -24.311794, y: 0.000060625236, z: -13.7546425}
 --- !u!1 &6818232786209797727
 GameObject:
   m_ObjectHideFlags: 0

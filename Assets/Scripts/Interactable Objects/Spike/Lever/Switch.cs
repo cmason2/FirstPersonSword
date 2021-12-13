@@ -11,9 +11,8 @@ public class Switch : MonoBehaviour
     {
         exitSpikes = GameObject.FindGameObjectsWithTag("exit_Door_spike");
     }
-    private void OnTriggerEnter(Collider other)
+    public void MoveSpikesDown()
     {
-        
         foreach(GameObject spike in exitSpikes)
         {
             spike.GetComponent<Animator>().SetTrigger("godown");

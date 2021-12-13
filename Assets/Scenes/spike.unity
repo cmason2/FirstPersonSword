@@ -10388,6 +10388,10 @@ PrefabInstance:
       propertyPath: spike
       value: 
       objectReference: {fileID: 2527036581579335179}
+    - target: {fileID: 6818232785580716384, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6818232785864869956, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -10435,6 +10439,14 @@ PrefabInstance:
     - target: {fileID: 6818232785864869958, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
       propertyPath: m_Name
       value: Lever
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818232786060344772, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818232786209797727, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83e95a0d5e3fdeb45a6a28caaa722467, type: 3}

@@ -149,17 +149,17 @@ public class Player : MonoBehaviour
                     targetedObject.GetComponent<Animator>().SetTrigger("activate");
                     
                 }
-                if (targetedObject.tag == "cupbord")
+                else if (targetedObject.tag == "cupbord")
                 {
                     targetedObject.GetComponent<Animator>().SetTrigger("opendoor");
                 }
-                if (targetedObject.tag == "lever")
+                else if (targetedObject.tag == "lever")
                 {
-                    targetedObject.GetComponent<Animator>().SetTrigger("pull");
-
-
+                    targetedObject.GetComponentInChildren<Animator>().SetTrigger("pull");
+                    targetedObject.GetComponentInChildren<Switch>().MoveSpikesDown();
+                    Destroy(GameObject.Find("Blockexit").GetComponent<Spike_switch>());
                 }
-                if (targetedObject.tag == "Key")
+                else if (targetedObject.tag == "Key")
                 {
                     Destroy(targetedObject);
                     numKeys++;

@@ -204,9 +204,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4565136103008738180}
-  - component: {fileID: 4565136103008738181}
   - component: {fileID: 4565136103008738179}
   - component: {fileID: 4668285852764100303}
+  - component: {fileID: 8328025885567167240}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -230,7 +230,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &4565136103008738181
+--- !u!114 &4565136103008738179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565136103008738182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90de7f0a0d4e1bb438183c47b744521e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 8328025885567167240}
+  playerSpeed: 4
+  gravity: -19.62
+  jumpHeight: 1
+--- !u!114 &4668285852764100303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565136103008738182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8982e8196ed13b04496e5bc3aaef64e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerCounter: {fileID: 0}
+--- !u!143 &8328025885567167240
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,35 +277,6 @@ CharacterController:
   m_SkinWidth: 0.036
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.87, z: 0}
---- !u!114 &4565136103008738179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4565136103008738182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90de7f0a0d4e1bb438183c47b744521e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 4565136103008738181}
-  playerSpeed: 4
-  gravity: -19.62
-  jumpHeight: 1
---- !u!114 &4668285852764100303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4565136103008738182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8982e8196ed13b04496e5bc3aaef64e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerCounter: {fileID: 0}
 --- !u!1 &4565136103323730779
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4565136103323730778
 Transform:
   m_ObjectHideFlags: 0
