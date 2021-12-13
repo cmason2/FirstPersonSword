@@ -13,12 +13,6 @@ public class TextFadeInOut : MonoBehaviour
         infoText = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public IEnumerator DisplayTextFade(string text, float displayTime, float fadeTime)
     {
         infoText.text = text;
