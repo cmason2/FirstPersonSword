@@ -40,7 +40,6 @@ public class BossMovement : MonoBehaviour
         bridge = GameObject.FindObjectOfType<Bridge>();
         StartCoroutine(VerticalOscillation());
         StartCoroutine(Phase1());
-        //StartCoroutine(Phase2());
     }
 
     private void Update()
@@ -187,6 +186,7 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator Phase1()
     {
+        yield return new WaitForSeconds(3f);
         while(boss.HP > 50)
         {
             yield return StartCoroutine(ShootSingle(false, 5));

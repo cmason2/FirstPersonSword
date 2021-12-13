@@ -25,6 +25,6 @@ public class Spike_switch : MonoBehaviour
             animators.SetTrigger("blockexit");
  
         }
-        StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Use Switch to disable", textDisplayTime, textFadeTime));
+        StartCoroutine(informationTextObject.GetComponent<TextFadeInOut>().DisplayTextFade("Find the switch to disable the spikes", textDisplayTime, textFadeTime));
     }
 }

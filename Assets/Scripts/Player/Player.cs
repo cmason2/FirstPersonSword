@@ -235,7 +235,8 @@ public class Player : MonoBehaviour
                         {
                             door.DoorOpen(false);
                         }
-                        Invoke("SceneChangeMaze",2.45f);
+                        StartCoroutine(fadeOverlay.GetComponent<SceneFade>().Fade(false, 1f));
+                        Invoke("SceneChangeNext",1f);
                         //Debug.Log(hp);
                         
                         hp = health;
@@ -371,9 +372,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SceneChangeMaze()
+    public void SceneChangeNext()
     {
-        SceneManager.LoadScene("Maze");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void SceneChangeGameOver()
