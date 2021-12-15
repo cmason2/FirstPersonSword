@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     public float interactDistance = 2.0f;
     TextMeshProUGUI infoText;
     TextMeshProUGUI interactText;
+    TextMeshProUGUI objectiveText;
     [SerializeField] float textDisplayTime = 3f;
     [SerializeField] float textFadeTime = 1f;
     GameObject informationTextObject;
@@ -68,6 +69,21 @@ public class Player : MonoBehaviour
         infoText = informationTextObject.GetComponent<TextMeshProUGUI>();
         infoText.text = "";
         interactText = GameObject.Find("InteractionText").GetComponent<TextMeshProUGUI>();
+        objectiveText = GameObject.Find("Objective").GetComponent<TextMeshProUGUI>();
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Maze")
+        {
+            objectiveText.text = "Pick up the torch\nCollect 3 keys\nUnlock the exit door";
+        }
+        else if(sceneName == "spike")
+        {
+            objectiveText.text = "Pick up the sword\nActivate the switch";
+        }
+        else if (sceneName == "Boss")
+        {
+            objectiveText.text = "Defeat the boss";
+        }
         cam = gameObject.GetComponent<Camera>();
         sword_cam = gameObject.GetComponentsInChildren<Camera>()[1];
         enemyLayer = LayerMask.GetMask("Enemy");
