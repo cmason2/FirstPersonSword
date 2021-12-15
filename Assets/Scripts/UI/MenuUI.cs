@@ -11,6 +11,7 @@ public class MenuUI : MonoBehaviour
     public Button medium;
     public Button hard;
     public Button back;
+    public Button back1;
     public Button leaderboard;
 
     public void startGame()
@@ -45,12 +46,13 @@ public class MenuUI : MonoBehaviour
 
     public void leaderboardClick()
     {
-        back.gameObject.SetActive(true);
+        back1.gameObject.SetActive(true);
 
         leaderboard.gameObject.SetActive(false);
         start.gameObject.SetActive(false);
         difficulty.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
+
     }
 
     public void backButton()
@@ -64,6 +66,16 @@ public class MenuUI : MonoBehaviour
         easy.gameObject.SetActive(false);
         medium.gameObject.SetActive(false);
         hard.gameObject.SetActive(false);
+    }
+
+    public void backButton1()
+    {
+        start.gameObject.SetActive(true);
+        difficulty.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
+        leaderboard.gameObject.SetActive(true);
+
+        back1.gameObject.SetActive(false);
     }
 
 
