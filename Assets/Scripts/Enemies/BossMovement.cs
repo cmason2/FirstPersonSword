@@ -115,7 +115,17 @@ public class BossMovement : MonoBehaviour
 
             ball.transform.parent = null;
 
-            ball.GetComponent<DeflectProjectile>().isFired = true;
+            DeflectProjectile projectile = ball.GetComponent<DeflectProjectile>();
+            projectile.isFired = true;
+
+            if (boss.HP <= 10)
+            {
+                projectile.requiredDeflections = 9;
+            }
+            else if (boss.HP <= 30)
+            {
+                projectile.requiredDeflections = 7;
+            }
 
             while (deflectBallActive)
             {
