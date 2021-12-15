@@ -8,6 +8,7 @@ public class DeflectProjectile : MonoBehaviour
     public bool isFired = false;
     private bool isMoving = false;
     public int deflectNumber = 0;
+    public int requiredDeflections = 5;
     public Vector3 direction;
     CharacterController player;
     Player playerScript;
@@ -64,10 +65,10 @@ public class DeflectProjectile : MonoBehaviour
         }
         else if (obj.gameObject.name == "BossEnemy")
         {
-            if (deflectNumber == 9)
+            if (deflectNumber == requiredDeflections)
             {
                 //damage boss, delete projectile
-                bossEnemyScript.TakeDamage(10);
+                bossEnemyScript.TakeDamage(20);
                 rb.isKinematic = true;
                 Destroy(gameObject);
             }
