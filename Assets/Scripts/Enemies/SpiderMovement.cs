@@ -11,6 +11,7 @@ public class SpiderMovement : MonoBehaviour
     [SerializeField] float attackDelay = 2f;
     Vector3 initialPosition;
     Vector3 oldRotation;
+    public bool attackCancelled = false;
     float timeSinceAttack = 0f;
     GameObject target;
     Player playerScript;
@@ -88,7 +89,7 @@ public class SpiderMovement : MonoBehaviour
             //{
             //    anim.SetTrigger("triggerAttack2");
             //}
-            anim.SetTrigger("triggerAttack1");
+            anim.SetTrigger("Attack");
             Debug.Log(name + " is attacking");
             timeSinceAttack = 0f;
             StartCoroutine(AttackCheck());  
@@ -109,7 +110,7 @@ public class SpiderMovement : MonoBehaviour
         //Debug.DrawRay(transform.position + new Vector3(0,1,0), transform.forward, Color.green, 100f, false);
         if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out RaycastHit hitInfo, attackDistance, playerLayer))
         {
-            if (!playerScript.isInvulnerable)
+            if (!playerScript.isInvulnerable && !attackCancelled)
             {
                 playerScript.TakeDamage(10);
                 Debug.Log("Player taken damage from " + name);

@@ -6,12 +6,14 @@ using UnityEngine.AI;
 public class SpiderEnemy : Enemy
 {
     Animator anim;
+    SpiderMovement spiderMovement;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
+        spiderMovement = GetComponent<SpiderMovement>();
     }
 
     public override void TakeDamage(int damage)
@@ -19,8 +21,9 @@ public class SpiderEnemy : Enemy
         Debug.Log(gameObject.name + " took " + damage + " damage!");
         hp -= damage;
         CheckHealth();
-        anim.SetTrigger("triggerDamaged");
+        anim.SetTrigger("Damaged");
         StartCoroutine(ApplyDamageEffect());
+        StartCoroutine(AttackCancel());
     }
 
     protected override void Death()
@@ -30,7 +33,7 @@ public class SpiderEnemy : Enemy
 
     private IEnumerator DeathActions()
     {
-        anim.SetTrigger("triggerDead");
+        anim.SetTrigger("Dead");
         Destroy(GetComponent<NavMeshAgent>());
         Destroy(GetComponent<SpiderMovement>());
         yield return new WaitForSeconds(1f);
@@ -42,6 +45,12 @@ public class SpiderEnemy : Enemy
         rb.angularDrag = 3f;
         gameObject.name = "Dead Spider";
         gameObject.layer = 7;
+    }
 
+    private IEnumerator AttackCancel()
+    {
+        spiderMovement.attackCancelled = true;
+        yield return new WaitForSeconds(1f);
+        spiderMovement.attackCancelled = false;
     }
 }
