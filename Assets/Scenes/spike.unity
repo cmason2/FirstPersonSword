@@ -10945,6 +10945,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4565136102913923350, guid: 645ef35682e690c4087a5e69b0d551ee, type: 3}
+      propertyPath: attackDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565136102913923350, guid: 645ef35682e690c4087a5e69b0d551ee, type: 3}
       propertyPath: interactLayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
