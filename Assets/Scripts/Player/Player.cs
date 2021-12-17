@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public float timeSinceDamageTaken = 0f;
     [SerializeField] float attackDelay = 0.75f;
     float timeSinceAttack = 0f;
-    float attackDistance = 1f;
+    [SerializeField] float attackDistance = 1f;
     GameObject targetedEnemy;
     Enemy targetedEnemyScript;
     Animator swordAnimator;
