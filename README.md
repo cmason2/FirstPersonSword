@@ -1,15 +1,15 @@
 # First Person Sword
 
-_FirstPersonSword_ game is a dungen game with multiple level to deal with the enemies and tasks to win the battle.
+_FirstPersonSword_ game is a first-person dungeon game with multiple levels, each containing their own objectives and enemies to hinder your progress.
 
 `Purpose:`
-The purpose of this game development is for the coursework at the University of Bath for the module Software Engineering.
+This game was developed as part of a coursework assignment at the University of Bath for the Software Engineering module.
 
 `Technology:`
 Unity with Scripts in C#
 
 `Timeline:`
-We completed the project in 7 sprints. Each sprint is of 5 days long with the max of 40 story points.
+We completed the project in 7 sprints. Each sprint was 5 days long with a maximum of 40 story points collectively for the development team (1 story point = 2 hours).
 
 `Lead Contributor:`
 Charlie Mason
@@ -23,19 +23,18 @@ Ashley Dawson, Chaya Tungkaserawong, Marcus Raymond, Mohamed Nasrudeen Meeran, Q
 3. Boss Level
 
 `How to play the game:`
-This dungeon has multiple Levels, each filled with different enemies and huddles, providing you with an adventure in every corner.
-Use WASD keys and mouse/Trackpad to navigate forward, backward, left and right.
-Up on entering the game, player will face the Maze level, a dark room as a first level where user with the help of torch have to find the keys to get in to the
-next Level, A Spike Room where player have to face the spikes that will come up and down and the enemies as well. Player should kill the enemies and with that
-enemy they should activate the button that will help to deactivate the spike and allow the player to enter it to the final room, The Boss Level.
-Boss level is the final level of the game, this level loads with lot of enemies and a big boss (Big enemy), Up on killing the enemies, player will carry
-the dead enemies and up on placing it on the pressure pan on both sides of the big boss, this will build a platform that will ease the player to attack
-the big boss.
+This dungeon has multiple levels, each filled with different enemies and challenges to overcome.
+Use the WASD keys to navigate forward, backwards, left and right. A mouse/trackpad is used to look around.
+
+The player will awaken in a dark room inhabited by a terrifying monster. The player must evade the monster and locate three keys with the help of a torch to proceed further into the dungeon.
+The second room is littered with sharp spikes that will damage the player on contact. The player must battle their way through a number of enemies to reach a switch that will remove the obstruction blocking the exit door.
+The player's final challenge takes place in the dungeon boss's lair. The player must use their wits to take down the boss and secure their freedom.
 
 `Limitations <Future work>:`
 1. Implement sounds to the game
-2. Imeplement health elements to regaain the player stamina (Health bar)
-3. Implement stamina (Health bar) to the torch in the maze level
-4. Creating duplicate doors to trap the player
-5. Creating puzzles to complicate the levels
-6. Implement pause menu to game, with "Exit" and "Return to Menu" buttons and user can change mouse sensitivity
+2. Implement collectible health resources to restore the player's health
+3. Implement player stamina that is consumed when running or attacking
+4. Torch battery power drains over time, can be recharged by collecting batteries.
+5. Create duplicate doors to trap the player
+6. Create puzzles to complicate the levels
+7. Implement a pause menu to game, with "Exit" and "Return to Menu" buttons and user can change mouse sensitivity
