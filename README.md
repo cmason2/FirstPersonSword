@@ -14,7 +14,7 @@ We completed the project in 7 sprints. Each sprint was 5 days long with a maximu
 `Lead Contributor:`
 Charlie Mason
 
-`Other Contributors(In the Order of Alphabet):`
+`Other Contributors (Alphabetical order):`
 Ashley Dawson, Chaya Tungkaserawong, Marcus Raymond, Mohamed Nasrudeen Meeran, Qibei Ge, Sharon John, Tiffany Yip
 
 `Levels of the game:`
