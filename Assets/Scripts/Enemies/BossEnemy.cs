@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BossEnemy : Enemy
 {
@@ -43,6 +44,7 @@ public class BossEnemy : Enemy
         yield return new WaitForSeconds(3f);
         yield return StartCoroutine(fadeOverlay.GetComponent<SceneFade>().Fade(false, 3f));
         yield return new WaitForSeconds(1f);
-        //Move to Victory scene here
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("Menu");
     }
 }
