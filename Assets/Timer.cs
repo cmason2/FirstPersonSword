@@ -7,35 +7,31 @@ public class Timer : MonoBehaviour
 {
     public Text timerCounter;
 
-    private float startTime;
-
-    public static string finalTime;
-    public static int finalMinutes;
-    public static float finalSeconds;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        startTime = Time.time;
-    }
+    public float totalTime = 0;
+    public static int minutes;
+    public static float seconds;
+    public static string time;
+    private static bool isStopped = false;
 
     // Update is called once per frame
     void Update()
     {
-        float t = Time.time - startTime;
-        string minutes = ((int) t/60).ToString("00");
-        string seconds = (t % 60).ToString("00.00");
-
-        if (BossEnemy.bossHealth != 0)
+        if(!isStopped)
         {
-            timerCounter.text = minutes + ":" + seconds;
+            float t = totalTime + Time.time;
+            minutes = ((int)t / 60);
+            seconds = (t % 60);
+            timerCounter.text = minutes.ToString("00") + ":" + seconds.ToString("00.00");
+            time = minutes.ToString("00") + ":" + seconds.ToString("00.00");
         }
         else
         {
-            finalTime = minutes + ":" + seconds;
-            finalMinutes = int.Parse(minutes);
-            finalSeconds = float.Parse(seconds);
-            return;
+            this.enabled = false;
         }
+    }
+
+    public static void StopTimer()
+    {
+        isStopped = true;
     }
 }

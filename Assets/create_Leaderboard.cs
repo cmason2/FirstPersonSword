@@ -35,9 +35,9 @@ public class create_Leaderboard : MonoBehaviour
         timesList.Add(fourth);
         timesList.Add(fifth);
 
-        if (Timer.finalTime != null)
+        if (Timer.time != null)
         {
-            newTime = (Timer.finalMinutes, Timer.finalSeconds, Timer.finalTime);
+            newTime = (Timer.minutes, Timer.seconds, Timer.time);
 
             for (int i = 0; i < 5; i++)
             {

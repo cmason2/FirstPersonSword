@@ -33,6 +33,7 @@ public class BossEnemy : Enemy
     {
         bossHealth = 0;
         Destroy(GameObject.Find("BossHealthBar"));
+        Timer.StopTimer();
         StartCoroutine(DeathAnimation());
     }
 

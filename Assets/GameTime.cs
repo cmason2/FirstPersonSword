@@ -11,13 +11,6 @@ public class GameTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // finishTime.text = "Hello";
-        finishTime.text = "Your time: " + Timer.finalTime;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        finishTime.text = "Your time: " + Timer.time;
     }
 }
