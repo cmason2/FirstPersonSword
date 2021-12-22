@@ -46,6 +46,6 @@ public class BossEnemy : Enemy
         yield return StartCoroutine(fadeOverlay.GetComponent<SceneFade>().Fade(false, 3f));
         yield return new WaitForSeconds(1f);
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("Victory");
     }
 }
