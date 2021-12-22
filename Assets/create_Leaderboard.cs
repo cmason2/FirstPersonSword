@@ -67,8 +67,11 @@ public class create_Leaderboard : MonoBehaviour
 
         timesList[x] = newTime;
 
+        theLeaderboard.text = "";
+
         for (int i = x; i < 5; i++)
         {
+
             (_, _, string y) = timesList[i];
         
             theLeaderboard.text = theLeaderboard.text + y + "\n";

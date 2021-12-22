@@ -13689,6 +13689,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1291620064, guid: 95aa95ebc5d95c04f98ca98f3f033ab0, type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291620064, guid: 95aa95ebc5d95c04f98ca98f3f033ab0, type: 3}
       propertyPath: isInvulnerable
       value: 0
       objectReference: {fileID: 0}
