@@ -7,31 +7,37 @@ public class Timer : MonoBehaviour
 {
     public Text timerCounter;
 
-    public float totalTime = 0;
+    private static float totalTime = 0;
+    private static bool isStopped = false;
     public static int minutes;
     public static float seconds;
     public static string time;
-    private static bool isStopped = false;
 
     // Update is called once per frame
     void Update()
     {
         if(!isStopped)
         {
-            float t = totalTime + Time.time;
-            minutes = ((int)t / 60);
-            seconds = (t % 60);
+            totalTime += Time.deltaTime;
+            minutes = ((int)totalTime / 60);
+            seconds = (totalTime % 60);
             timerCounter.text = minutes.ToString("00") + ":" + seconds.ToString("00.00");
             time = minutes.ToString("00") + ":" + seconds.ToString("00.00");
         }
         else
         {
-            this.enabled = false;
+            //Stop Counting
         }
     }
 
     public static void StopTimer()
     {
         isStopped = true;
+    }
+
+    public static void ResetTimer()
+    {
+        isStopped = false;
+        totalTime = 0;
     }
 }

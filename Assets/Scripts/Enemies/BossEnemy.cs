@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class BossEnemy : Enemy
 {
-    public static int bossHealth = 1;
     BossHealthBar healthBar;
     GameObject fadeOverlay;
 
@@ -31,7 +30,6 @@ public class BossEnemy : Enemy
 
     protected override void Death()
     {
-        bossHealth = 0;
         Destroy(GameObject.Find("BossHealthBar"));
         Timer.StopTimer();
         StartCoroutine(DeathAnimation());

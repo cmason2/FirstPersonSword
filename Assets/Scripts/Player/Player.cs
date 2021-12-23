@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         if (sceneName == "Maze")
         {
             objectiveText.text = "Pick up the torch\nCollect 3 keys\nUnlock the exit door";
+            Timer.ResetTimer();
         }
         else if(sceneName == "spike")
         {
