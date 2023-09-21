@@ -18,17 +18,18 @@ Charlie Mason
 Ashley Dawson, Chaya Tungkaserawong, Marcus Raymond, Mohamed Nasrudeen Meeran, Qibei Ge, Sharon John, Tiffany Yip
 
 `Levels of the game:`
-1. Maze level
-2. Spike Level
-3. Boss Level
+1. Maze level: The player will awaken in a dark room inhabited by a terrifying monster. The player must evade the monster and locate three keys with the help of a torch to proceed further into the dungeon.
+![Maze Level](https://github.com/cmason2/FirstPersonSword/blob/main/Maze.jpg?raw=true)
+
+3. Spike Level: The second room is littered with sharp, moving spikes that will damage the player on contact. The player must battle their way through bat and spider enemies to reach a switch that will remove the obstruction blocking the exit door.
+![Spike Level](https://github.com/cmason2/FirstPersonSword/blob/main/Spike.jpg?raw=true)
+
+5. Boss Level: The player's final challenge takes place in the dungeon boss's lair. The player must use their wits to take down the boss and secure their freedom.
+![Boss Level](https://github.com/cmason2/FirstPersonSword/blob/main/Boss.jpg?raw=true)
 
 `How to play the game:`
 This dungeon has multiple levels, each filled with different enemies and challenges to overcome.
-Use the WASD keys to navigate forward, backwards, left and right. A mouse/trackpad is used to look around.
-
-The player will awaken in a dark room inhabited by a terrifying monster. The player must evade the monster and locate three keys with the help of a torch to proceed further into the dungeon.
-The second room is littered with sharp spikes that will damage the player on contact. The player must battle their way through a number of enemies to reach a switch that will remove the obstruction blocking the exit door.
-The player's final challenge takes place in the dungeon boss's lair. The player must use their wits to take down the boss and secure their freedom.
+Use the WASD keys to navigate forward, backwards, left and right. A mouse/trackpad is used to look around. An on-screen prompt will appear when the player is looking at an item that can be interacted with using the 'E' key.
 
 `Limitations <Future work>:`
 1. Implement sounds to the game
